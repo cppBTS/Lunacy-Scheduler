@@ -140,5 +140,11 @@ public class WebController {
 				+ "</body></html>";
 		return message;
 	}
+	
+	//Johnny's method
+	@RequestMapping(value = "/cs480/johnnylu", method = RequestMethod.GET)
+	String msg() {
+		return "Johnny was here";
+	}
 
 }
