@@ -141,4 +141,22 @@ public class WebController {
 		return message;
 	}
 
+	//Jason's API Call
+		@RequestMapping(value = "/cs480/leej", method = RequestMethod.GET)
+		String Test2() {
+			String message = "<!DOCTYPE html>"
+					+ "<html>\r\n" + 
+					"<head>\r\n" + 
+					"<title> Jason's Page </title>\r\n" + 
+					"</head>\r\n" +
+					"<body>\r\n" + 
+					"<h1>Welcome to Jason's Page</h1>\r\n" + 
+					"<p>My favorite <strong>video games</strong> are:<br>\r\n" + 
+					"<p>League of Legend<br> <br> Overwatch<p/>\r\n" + 
+					"<h2>My favorite website<h2>\r\n" + 
+					" <a href=\"http://youtube.com\">???	\r\n" + 
+					"</body>\r\n" + 
+					"</html>";
+			return message;
+		}
 }
