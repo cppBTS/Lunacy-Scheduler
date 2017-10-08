@@ -153,7 +153,7 @@ public class WebController {
 			String message = "<!DOCTYPE html>"
 					+ "<html>\r\n" + 
 					"<head>\r\n" + 
-					"<title> Jason's Page </title>\r\n" + 
+					"<title> Jason's Page. </title>\r\n" + 
 					"</head>\r\n" +
 					"<body>\r\n" + 
 					"<h1>Welcome to Jason's Page</h1>\r\n" + 
