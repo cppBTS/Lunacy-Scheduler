@@ -165,4 +165,12 @@ public class WebController {
 					"</html>";
 			return message;
 		}
+		
+		//Ubaldo's Method Call
+		@RequestMapping(value = "user/simplyvaldo", method = RequestMethod.GET, produces = "text/html")
+		ModelAndView myHomepage() {
+			
+			ModelAndView modelAndView = new ModelAndView("simplyvaldo");
+			return modelAndView;
+		}
 }
