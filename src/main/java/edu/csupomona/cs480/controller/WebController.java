@@ -1,7 +1,11 @@
 package edu.csupomona.cs480.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -138,6 +142,22 @@ public class WebController {
 		String message = "<html><body style=\"color: #0000ff; text-white: 3px 3px #000; font-size: 36px;\"><h1>Testtttttttt</h1>"
 				+ "<img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBfB_ieMn099EnQHVnGYRJQrY2p9PfxT-taj04FNq60G1CD-KV\" />"
 				+ "</body></html>";
+		return message;
+	}
+	
+	//Justin's Assignment 4
+	@RequestMapping(value = "/cs480/soup", method = RequestMethod.GET)
+	String Assignment4() {
+		String message = "";
+		Document doc;
+		try {
+			doc = Jsoup.connect("http://www.espn.com/").get();
+			Elements newsHeadlines = doc.select("span.quicklinks_list__name");
+			message = newsHeadlines.text();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return message;
 	}
 	
