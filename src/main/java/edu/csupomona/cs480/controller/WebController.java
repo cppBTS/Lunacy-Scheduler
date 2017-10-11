@@ -166,6 +166,12 @@ public class WebController {
 	String msg() {
 		return "Johnny was here";
 	}
+	
+	// Johnny Assignment 4
+	@RequestMapping(value = "/cs480/cmsio", method = RequestMethod.GET)
+	String getMsg() {
+		return "test";
+	}
 
 	//Jason's API Call
 		@RequestMapping(value = "/cs480/leej", method = RequestMethod.GET)
