@@ -1,8 +1,11 @@
 package edu.csupomona.cs480.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -170,7 +173,15 @@ public class WebController {
 	// Johnny Assignment 4
 	@RequestMapping(value = "/cs480/cmsio", method = RequestMethod.GET)
 	String getMsg() {
-		return "test";
+		try {
+		 InputStream in = new URL( "http://commons.apache.org" ).openStream();
+		 String content = IOUtils.toString(in, "UTF-8");
+		   return(content);
+		}
+		catch (Exception e)
+		{
+			return e.toString();
+		}
 	}
 
 	//Jason's API Call
