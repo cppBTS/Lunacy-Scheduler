@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
+
 
 
 /**
@@ -206,6 +208,14 @@ public class WebController {
 					"</html>";
 			return message;
 		}
+		/*// Jason's Assignment #4 ;
+		@RequestMapping(value = "/cs480/leej_email", method = RequestMethod.GET)
+		String email() {
+			final String username = "csmajor1234@gmail.com";
+			final String password = "1234";
+			
+			
+		}*/
 		
 		//Ubaldo's Method Call
 		@RequestMapping(value = "user/simplyvaldo", method = RequestMethod.GET, produces = "text/html")
