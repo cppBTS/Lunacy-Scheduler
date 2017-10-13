@@ -2,10 +2,14 @@ package edu.csupomona.cs480.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -16,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
@@ -209,5 +212,20 @@ public class WebController {
 			
 			ModelAndView modelAndView = new ModelAndView("simplyvaldo");
 			return modelAndView;
+		}
+		
+		//Ubaldo's Assignment #4
+		@RequestMapping(value = "user/simplyvaldo/name", method = RequestMethod.GET)
+		String temp() {
+			
+			DateTime time1 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("UTC"));
+			DateTime time2 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("America/Los_Angeles"));
+			DateTime time3 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("America/New_York"));
+			DateTime time4 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("Asia/Hong_Kong"));
+		    
+			return  time1.getZone().toString() + ": " + time1.toString() + "<br>" + 
+					time2.getZone().toString() + ": " + time2.toString() + "<br>" +  
+					time3.getZone().toString() + ": " + time3.toString() + "<br>" +  
+					time4.getZone().toString() + ": " + time4.toString() + "<br>" ;
 		}
 }
