@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -214,18 +215,21 @@ public class WebController {
 			return modelAndView;
 		}
 		
-		//Ubaldo's Assignment #4
+		//Ubaldo's Assignment #4 (Joda-Time dependency) 
 		@RequestMapping(value = "user/simplyvaldo/name", method = RequestMethod.GET)
-		String temp() {
+		String timeZones() {
 			
 			DateTime time1 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("UTC"));
 			DateTime time2 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("America/Los_Angeles"));
-			DateTime time3 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("America/New_York"));
-			DateTime time4 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("Asia/Hong_Kong"));
+			DateTime time3 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("America/Chicago"));
+			DateTime time4 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("America/New_York"));
+			DateTime time5 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("Asia/Hong_Kong"));
 		    
-			return  time1.getZone().toString() + ": " + time1.toString() + "<br>" + 
-					time2.getZone().toString() + ": " + time2.toString() + "<br>" +  
-					time3.getZone().toString() + ": " + time3.toString() + "<br>" +  
-					time4.getZone().toString() + ": " + time4.toString() + "<br>" ;
+			return  "<h1>Current Exact Time</h1>" + 
+					"<b>" + time1.getZone().toString() + "</b>" + ": " + time1.toString(DateTimeFormat.fullDateTime()) + "<br><br>" + 
+					"<b>" + time2.getZone().toString() + "</b>" + ": " + time2.toString(DateTimeFormat.fullDateTime()) + "<br><br>" +  
+					"<b>" + time3.getZone().toString() + "</b>" + ": " + time3.toString(DateTimeFormat.fullDateTime()) + "<br><br>" +  
+					"<b>" + time4.getZone().toString() + "</b>" + ": " + time4.toString(DateTimeFormat.fullDateTime()) + "<br><br>" + 
+					"<b>" + time5.getZone().toString() + "</b>" + ": " + time5.toString(DateTimeFormat.fullDateTime()) + "<br><br>" ;
 		}
 }
