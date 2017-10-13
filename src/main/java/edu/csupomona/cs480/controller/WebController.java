@@ -2,10 +2,11 @@ package edu.csupomona.cs480.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
+
+import javax.websocket.Session;
 
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
@@ -25,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
-
 
 
 /**
@@ -208,14 +208,20 @@ public class WebController {
 					"</html>";
 			return message;
 		}
-		/*// Jason's Assignment #4 ;
+		
+		// Jason's Assignment #4 ;
 		@RequestMapping(value = "/cs480/leej_email", method = RequestMethod.GET)
-		String email() {
-			final String username = "csmajor1234@gmail.com";
-			final String password = "1234";
-			
-			
-		}*/
+		String send() {
+		          
+			/*String hostServer = "asdf.ghijk.com";
+			String emailID = "notcsmajor1234@gmail.com";
+			Properties p = System.getProperties();
+			p.put("mail.host", hostServer);
+			Session session = Session.getInstance(p,null);
+			EmailUtil.sendEmail(session, emailID,"Simple Email Testing Subject","Simple Email Testing Body");
+			 */
+			return "Working on email sending";
+		}
 		
 		//Ubaldo's Method Call
 		@RequestMapping(value = "user/simplyvaldo", method = RequestMethod.GET, produces = "text/html")
