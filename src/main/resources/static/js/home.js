@@ -14,7 +14,8 @@ var database = firebase.database();
 cs480App.controller('Schedule', function ($scope, $http) {
 	$scope.addTime = function() {
 		  firebase.database().ref('tester/').set({
-		    username: 'test'
+		    start: $scope.start,
+		    end: $scope.end
 		  });
 		}
 
