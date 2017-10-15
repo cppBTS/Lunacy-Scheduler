@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html ng-app="LunacyScheduler">
 	<head>
 	    <title>Lunacy Scheduler</title>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -11,6 +11,7 @@
 		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-auth.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-database.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+		<script src="/js/home.js"></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
@@ -18,19 +19,10 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
 
-		<script>
-		  // Initialize Firebase
-		  var config = {
-		    apiKey: "AIzaSyC28G2x-Xnel2wtmKnw3xi-a8TmWrnJ7tI",
-		    authDomain: "lunacy-scheduler.firebaseapp.com",
-		    databaseURL: "https://lunacy-scheduler.firebaseio.com",
-		    projectId: "lunacy-scheduler"
-		  };
-		  firebase.initializeApp(config);
-		</script>
+		
 	</head>
 
-	<body onload="healthCheck();">
+	<body ng-controller="Schedule">
 		<label id="status"></label>
 
 		<nav class="navbar navbar-default">
@@ -98,7 +90,7 @@
 		<form style= "text-align: center;">
 			</br>
 			</br>
-			<button style= "margin: 0 auto;" class = "btn btn-success" onclick="showData()">Submit</button>
+			<button style= "margin: 0 auto;" class = "btn btn-success" ng-click="addTime()">Submit</button>
 		</form>
 
 </html>
