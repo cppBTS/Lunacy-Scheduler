@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Date Picker (Version 3)</title>
+        
+	<!-- Include Required Prerequisites -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+	 
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+	
+	<!-- Local CSS files -->
+	<link href="/css/datePicker.css" rel="stylesheet">
+        
+    </head>
+    
+    <body>
+    
+    <div class="jumbotron text-center">
+			<h1><strong>Enter your unavailable hours<strong></h1>
+	</div>
+    	<h2>Enter Date Range:</h2>
+        <div class="form-group">
+        	<input type="text" name="daterange" class="form-control" ><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+        </div>
+        
+        <script>
+        $('input[name="daterange"]').daterangepicker(
+        		{
+        		    locale: {
+        		      format: 'MM-DD-YYYY'
+        		    },
+        		    alwaysShowCalendars: true,
+        		    todayBtn: "linked",
+        		    autoclose: true,
+        		    todayHighlight: true
+        		}, 
+        		function(start, end, label) {
+        		    //When you click Apply Button
+        		});
+        
+        </script>
+
+	   
+    </body>
+</html>
