@@ -14,10 +14,25 @@ var database = firebase.database();
 cs480App.controller('Schedule', function ($scope, $http) {
 	$scope.addTime = function() {
 		  firebase.database().ref('tester/').set({
-		    start: $scope.start,
-		    end: $scope.end
+			name: $scope.name,
+			group: $scope.group,
+		    start: $scope.start.toString(),
+		    end: $scope.end.toString()
 		  });
-		}
+	}
+	
+	$scope.addDate = function() {
+		  firebase.database().ref('ubaldo/').set({
+		    start: $scope.start.toString()
+		  });
+	}
+	
+	$scope.addDateTest = function() {
+		  firebase.database().ref('ubaldo2/').set({
+		    start: $scope.start.toString(),
+		    end: $scope.end.toString()
+		  });
+	}
 
   $scope.loadUsers = function() {
 	  $http.get("cs480/users/list")
