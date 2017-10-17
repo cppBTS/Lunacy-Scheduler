@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 	
 	<!-- Local CSS files -->
-	<link href="/css/datePicker.css" rel="stylesheet">
+	<link href="/css/datePickerV3.css" rel="stylesheet">
         
     </head>
     
@@ -22,10 +22,16 @@
     <div class="jumbotron text-center">
 			<h1><strong>Enter your unavailable hours<strong></h1>
 	</div>
-    	<h2>Enter Date Range:</h2>
-        <div class="form-group">
-        	<input type="text" name="daterange" class="form-control" ><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-        </div>
+	
+	<div class="container"><h2>Enter Date Range:</h2></div>
+		<div class="col-lg-4 col-lg-offset-4">
+	        <div class="input-group">
+			               <input type="text" name="daterange" class="form-control" >
+			               <span class="input-group-addon">
+			                		<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+			</div>
+		</div>
         
         <script>
         $('input[name="daterange"]').daterangepicker(
