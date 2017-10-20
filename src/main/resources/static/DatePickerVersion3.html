@@ -53,6 +53,12 @@
         		}, 
         		function(start, end, label) {
         		    //When you click Apply Button
+        			var myDate = new Date(start);
+        			var dayWrapper = moment(myDate); 
+        			//var dayString = dayWrapper.format("dddd MMMM DD YYYY"); 
+        			var dayString = dayWrapper.format("MM-DD-YYYY"); 
+        			alert(dayString);
+        		    
         		});
         
         </script>
