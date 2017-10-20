@@ -18,13 +18,11 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope) {
   $scope.today();
   
   $scope.submit = function() {
-	  var moment = new Date($scope.dt);
-	  var formatted = moment.getMonth() + "/" + moment.getDay() + "/" + moment.getFullYear();
-	  var moment1 = new Date($scope.dt.end);
-	  var formatted1 = moment1.getMonth() + "/" + moment1.getDay() + "/" + moment1.getFullYear();
 	  firebase.database().ref('test/').set({
-		    start: formatted,
-		    end: formatted1
+		  	user: $scope.name,
+		  	group: $scope.group,
+		    start: $scope.dt.getMonth() + 1 + "/" + $scope.dt.getDate() + "/" + $scope.dt.getFullYear(),
+		    end: $scope.dt.end.getMonth() + 1 +  "/" + $scope.dt.end.getDate() + "/" + $scope.dt.end.getFullYear()
 		  });
   };
 
