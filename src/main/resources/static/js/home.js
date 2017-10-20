@@ -33,7 +33,9 @@ cs480App.controller('Schedule', function ($scope, $http) {
 		    end: $scope.end.toString()
 		  });
 	}
-
+	$scope.open1 = function() {
+	    $scope.popup1.opened = true;
+	  }
   $scope.loadUsers = function() {
 	  $http.get("cs480/users/list")
 	  	.success(function(data){
