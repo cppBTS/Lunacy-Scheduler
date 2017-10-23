@@ -26,7 +26,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 		<link rel="icon" href="images/logo.png">
 		<link href="css/sticky-footer.css" rel="stylesheet">
-
+		<script src="js/moment.min.js"></script>
+		
     </head>
 
     <body ng-controller="DatepickerPopupDemoCtrl">
@@ -91,7 +92,9 @@
 		        </p>
 		      </div>
 		    </div>
+		  </div>
 
+		<div class="container-fluid">
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -107,33 +110,65 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">Start Time</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <th scope="row">Start Time</th>             
+                  <td>
+                  	<input type="time" name="start_time_sunday">
+                  </td>
+                  <td>
+                  	<input type="time" name="start_time_monday">
+                  </td>
+                  <td>
+                  	<input type="time" name="start_time_tuesday">
+                  </td>
+                  <td>
+                  	<input type="time" name="start_time_wednesday">
+                  </td>
+                  <td>
+                  	<input type="time" name="start_time_thursday">
+                  </td>
+                  <td>
+                  	<input type="time" name="start_time_friday">
+                  </td>
+                  <td>
+                  	<input type="time" name="start_time_saturday">
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">End Time</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>         
+                  <td>
+                  	<input type="time" name="end_time_sunday">
+                  </td>
+                  <td>
+                  	<input type="time" name="end_time_monday">
+                  </td>
+                  <td>
+                  	<input type="time" name="end_time_tuesday">
+                  </td>
+                  <td>
+                  	<input type="time" name="end_time_wednesday">
+                  </td>
+                  <td>
+                  	<input type="time" name="end_time_thursday">
+                  </td>
+                  <td>
+                  	<input type="time" name="end_time_friday">
+                  </td>
+                  <td>
+                  	<input type="time" name="end_time_saturday">
+                  </td>                  
+                </tr>
               </tbody>
             </table>
+		</div>
+            
+            <button type="button" class="btn btn-outline-success">+</button>
 
+		<div class="container" align="center">
 		    <hr />
 		    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
 		    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
 		    <button type="button" class="btn btn-success" ng-click="submit()">Submit</button>
-			</div>
+		</div>
 
 
     </body>

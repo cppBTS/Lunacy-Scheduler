@@ -12,6 +12,7 @@
 		<!--  local js files -->
 		<script src="js/FullCalendar/moment.min.js"></script> 
     	<script src="js/FullCalendar/jquery.min.js"></script> 
+    	<script src="js/FullCalendar/jquery-ui.min.js"></script>
 		<script src="js/FullCalendar/fullcalendar.min.js"></script> 
 		
 		<!--  If you want to implement Google Calendar API -->
@@ -23,9 +24,15 @@
 			$(document).ready(function() {
 		
 				$('#calendar').fullCalendar({
-					defaultDate: '2017-10-12',
+					defaultDate: new Date(),
 					editable: true,
+					navLinks: true, // can click day/week names to navigate views
 					eventLimit: true, // allow "more" link when too many events
+					header: {
+				        left: 'prev,next today',
+				        center: 'title',
+				        right: 'month,agendaWeek,agendaDay listWeek'
+				    },
 					events: [
 						{
 							title: 'All Day Event',
