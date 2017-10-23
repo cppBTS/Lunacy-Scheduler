@@ -5,12 +5,13 @@ import java.util.List;
 public class Group {
 	private String groupName;
 	private Date dayofEvent;
+	private TimeFrame timeofEvent;
 	private List<String> userIDs;
-	public Group(String groupName, Date dayofEvent, List<String> userIDs) {
-		super();
+	public Group(String groupName, Date dayofEvent, List<String> userIDs, TimeFrame timeofEvent) {
 		this.groupName = groupName;
 		this.dayofEvent = dayofEvent;
 		this.userIDs = userIDs;
+		this.timeofEvent = timeofEvent;
 	}
 	public String getGroupName() {
 		return groupName;
@@ -29,6 +30,12 @@ public class Group {
 	}
 	public void setUserIDs(List<String> userIDs) {
 		this.userIDs = userIDs;
+	}
+	public TimeFrame getTimeofEvent() {
+		return timeofEvent;
+	}
+	public void setTimeofEvent(TimeFrame timeofEvent) {
+		this.timeofEvent = timeofEvent;
 	}
 	
 }

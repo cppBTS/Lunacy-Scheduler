@@ -1,6 +1,6 @@
 package edu.csupomona.cs480.data;
 
-public class TimeFrame {
+public class TimeFrame{
 	private Time startTime;
 	private Time endTime;
 	public TimeFrame(Time startTime, Time endTime) {

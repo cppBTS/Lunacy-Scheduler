@@ -1,36 +1,26 @@
 package edu.csupomona.cs480;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.*;
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
-import org.junit.Test;
-
-import edu.csupomona.cs480.data.*;
 import edu.csupomona.cs480.data.Date;
+import edu.csupomona.cs480.data.DateTime;
+import edu.csupomona.cs480.data.RealUser;
+import edu.csupomona.cs480.data.Schedule;
+import edu.csupomona.cs480.data.Scheduler;
+import edu.csupomona.cs480.data.Time;
+import edu.csupomona.cs480.data.TimeFrame;
+import edu.csupomona.cs480.data.Unavailability;
 
-/**
- * Unit test for scheduler.
- */
-public class ScheduleTest {
-	@Test
-	public void testGetBestSchedule() {
-		TimeFrame testTimes[] = new TimeFrame[7];
-		TimeFrame testTimes2[] = new TimeFrame[7];
-		Schedule a = new Schedule(testTimes);
-		Schedule b = new Schedule(testTimes2);
-		TimeFrame best = new TimeFrame(new Time(1,20,"AM"), new Time(2,30,"AM"));
-		TimeFrame tested = a.findbestTime(b);
-		
 
-		assertEquals(best, tested);
 
-	}
-	
-	//Justin's TestCase
-	@Test
-	public void testAll() throws Exception {
 
+public class Source {
+	public static void main(String args[]) throws Exception {
 		List<TimeFrame>temp = new ArrayList<TimeFrame>();
 		temp.add(new TimeFrame(new Time(0,0), new Time(10,0)));
 		temp.add(new TimeFrame(new Time(18,0), new Time(23,59)));
@@ -52,6 +42,7 @@ public class ScheduleTest {
 		users.add(testUser2);
 		Scheduler testScheduler = new Scheduler(new Date(2017,10,23), new Date(2017,10,23), users);
 		List<DateTime> availableTime = testScheduler.findAvailableSchedules();
-		assertEquals(availableTime.get(0), new DateTime(new Date(2017,10,23), new TimeFrame(new Time(11,0), new Time(18,0))));
+		System.out.println(availableTime);
 	}
+	
 }
