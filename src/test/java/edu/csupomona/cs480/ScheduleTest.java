@@ -54,4 +54,11 @@ public class ScheduleTest {
 		List<DateTime> availableTime = testScheduler.findAvailableSchedules();
 		assertEquals(availableTime.get(0), new DateTime(new Date(2017,10,23), new TimeFrame(new Time(11,0), new Time(18,0))));
 	}
+	
+	//Ubaldo's Test Case
+	@Test
+	public void mytestCase(){
+		Date currentDate = new Date(2017,12,25);
+		assertEquals(new Date(2017, 12, 26), currentDate.nextDate());
+	}
 }
