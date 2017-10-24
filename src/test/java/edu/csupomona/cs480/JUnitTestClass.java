@@ -25,5 +25,4 @@ public class JUnitTestClass {
 		TimeFrame twelveHours = new TimeFrame(new Time(12, 00), new Time(24, 00));
 		assertEquals(noonToMidnight, twelveHours);
 	}
-
 }
