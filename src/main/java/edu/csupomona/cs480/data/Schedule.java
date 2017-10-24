@@ -171,4 +171,8 @@ public class Schedule {
 		LocalDate dt = new LocalDate(date.getYear(), date.getMonth(), date.getDate());
 		return returnTimeFrames(dt.getDayOfWeek());
 	}
+	public List<TimeFrame> returnScheduleforDayofWeek(Date date) throws IOException {
+		LocalDate dt = new LocalDate(date.getYear(), date.getMonth(), date.getDate());
+		return returnTimeFrames(dt.getDayOfWeek());
+	}
 }
