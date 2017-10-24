@@ -33,10 +33,10 @@
 					header: {
 				        left: 'prev,next today',
 				        center: 'title',
-				        right: 'switchView month,agendaWeek,agendaDay,listMonth,listWeek,listDay '
+				        right: 'switchView1,switchView2 month,agendaWeek,agendaDay,listMonth,listWeek,listDay '
 				    },
 				    customButtons: {
-				        switchView: {
+				        switchView1: {
 				            text: 'View: Agenda',
 				            click: function() {
 				            	
@@ -54,9 +54,18 @@
 				            		$('#calendar').fullCalendar('changeView', 'listDay');
 				            	}
 				            	
-				            	else if(view.name == "listMonth"){
+				            	changeViews();
+				            }
+				        },
+				        switchView2: {
+				            text: 'View: List',
+				            click: function() {
+				            	
+				            	var view = $('#calendar').fullCalendar('getView');
+				            	
+				            	if(view.name == "listMonth"){
 				            		$('#calendar').fullCalendar('changeView', 'month');
-				            	}	
+				            	}
 				            	
 				            	else if(view.name == "listWeek"){
 				            		$('#calendar').fullCalendar('changeView', 'agendaWeek');
@@ -66,7 +75,7 @@
 				            		$('#calendar').fullCalendar('changeView', 'agendaDay');
 				            	}
 				            	
-				            	toogle();
+				            	changeViews();
 				            }
 				        }
 				    },
@@ -135,10 +144,10 @@
 					]
 				});
 				
-				toogle();
+				changeViews();
 			});
 			
-			function toogle(){
+			function changeViews(){
 				
 				if(flag){
 
@@ -148,6 +157,9 @@
 	            	$(".fc-month-button").show();
 	            	$(".fc-agendaWeek-button").show();
 	            	$(".fc-agendaDay-button").show();
+	            	
+	            	$(".fc-switchView1-button").show();
+	            	$(".fc-switchView2-button").hide();
 				}else{
 					$(".fc-listMonth-button").show();
 					$(".fc-listWeek-button").show();
@@ -155,6 +167,9 @@
 	            	$(".fc-month-button").hide();
 	            	$(".fc-agendaWeek-button").hide();
 	            	$(".fc-agendaDay-button").hide();
+	            	
+	            	$(".fc-switchView1-button").hide();
+	            	$(".fc-switchView2-button").show();
 				}
 				
 				flag = !flag;
