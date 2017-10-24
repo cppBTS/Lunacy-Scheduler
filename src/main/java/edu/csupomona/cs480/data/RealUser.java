@@ -13,6 +13,7 @@ public class RealUser {
     private String name;
     private List<Group> groups;
     private Unavailability schedules;
+    private Available availSchedules;
 
     public RealUser(String id, String name, List<Group> groups,
 			Unavailability schedules) {
@@ -20,6 +21,20 @@ public class RealUser {
 		this.name = name;
 		this.groups = groups;
 		this.schedules = schedules;
+	}
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param groups
+	 * @param availSchedules
+	 */
+	public RealUser(String id, String name, List<Group> groups,
+			Available availSchedules) {
+		this.id = id;
+		this.name = name;
+		this.groups = groups;
+		this.availSchedules = availSchedules;
 	}
 
 	public String getId() {
@@ -52,5 +67,19 @@ public class RealUser {
 
 	public void setSchedules(Unavailability schedules) {
 		this.schedules = schedules;
+	}
+
+	/**
+	 * @return the availSchedules
+	 */
+	public Available getAvailSchedules() {
+		return availSchedules;
+	}
+
+	/**
+	 * @param availSchedules the availSchedules to set
+	 */
+	public void setAvailSchedules(Available availSchedules) {
+		this.availSchedules = availSchedules;
 	}
 }

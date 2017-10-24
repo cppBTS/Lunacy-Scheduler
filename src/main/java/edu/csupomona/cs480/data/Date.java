@@ -1,5 +1,6 @@
 package edu.csupomona.cs480.data;
 
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 
 public class Date implements Comparable<Date>{
@@ -20,6 +21,12 @@ public class Date implements Comparable<Date>{
 		this.month = month;
 		this.date = date;
 		this.dayType = dayType;
+	}
+
+	public int getDaysBetween(Date date) {
+		LocalDate dt = new LocalDate(year, month, this.date);
+		LocalDate de = new LocalDate(date.getYear(), date.getMonth(), date.getDate());
+		return Days.daysBetween(dt, de).getDays();
 	}
 	public int getYear() {
 		return year;

@@ -55,4 +55,11 @@ public class TimeFrame{
 			return false;
 		return true;
 	}
+	public boolean contains(TimeFrame second) {
+		// TODO Auto-generated method stub
+		if(second.getStartTime().compareTo(startTime) >= 0 && second.getStartTime().compareTo(endTime) <= 0) {
+			return true;
+		}
+		return false;
+	}
 }
