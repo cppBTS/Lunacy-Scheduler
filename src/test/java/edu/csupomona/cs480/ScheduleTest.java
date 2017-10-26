@@ -22,9 +22,7 @@ public class ScheduleTest {
 		TimeFrame best = new TimeFrame(new Time(1,20,"AM"), new Time(2,30,"AM"));
 		TimeFrame tested = a.findbestTime(b);
 		
-
 		assertEquals(best, tested);
-
 	}
 	
 	//Justin's TestCase
@@ -103,10 +101,21 @@ public class ScheduleTest {
 		assertEquals(new DateTime(new Date(2017,10,27), new TimeFrame(new Time(15,0), new Time(17,0))), availableTime);
 	}
 	
-	//Ubaldo's Test Case
+	//Ubaldo's Test Case # 1
 	@Test
-	public void mytestCase(){
+	public void mytestCase1(){
+		
 		Date currentDate = new Date(2017,12,25);
 		assertEquals(new Date(2017, 12, 26), currentDate.nextDate());
+	}
+	
+	 //Ubaldo's Test Case # 2
+	@Test
+	public void mytestCase2(){
+		
+		Date currentDate = new Date(2017,12,25);
+		Date futureDate = new Date(2017,12,31);
+	
+		assertEquals(6, currentDate.getDaysBetween(futureDate));
 	}
 }
