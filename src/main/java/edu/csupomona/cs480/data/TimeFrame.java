@@ -1,5 +1,7 @@
 package edu.csupomona.cs480.data;
 
+import org.joda.time.LocalTime;
+
 public class TimeFrame{
 	private Time startTime;
 	private Time endTime;
@@ -61,5 +63,13 @@ public class TimeFrame{
 			return true;
 		}
 		return false;
+	}
+	public Time getHours() {
+		// TODO Auto-generated method stub
+		int hour = endTime.getHour() - startTime.getHour();
+		LocalTime test = new LocalTime(hour, endTime.getMinute());
+		test.minusMinutes(startTime.getMinute());
+		
+		return new Time(test.getHourOfDay(), test.getMinuteOfHour());
 	}
 }

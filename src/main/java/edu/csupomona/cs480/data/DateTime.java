@@ -11,6 +11,11 @@ public class DateTime {
 		this.date = date;
 		this.time = time;
 	}
+	
+	public Time findHours() {
+		Time hours = time.getHours();
+		return hours;
+	}
 	/**
 	 * @return the date
 	 */
@@ -76,6 +81,16 @@ public class DateTime {
 	@Override
 	public String toString() {
 		return "DateTime [date=" + date + ", time=" + time + "]";
+	}
+
+	public int compareTo(DateTime dateTime) {
+		// TODO Auto-generated method stub
+		if(time.getHours().compareTo(dateTime.time.getHours()) == 1) {
+			return 1;
+		} else if(time.getHours().compareTo(dateTime.time.getHours()) == -1) {
+			return -1;
+		}
+		return 0;
 	}
 	
 }

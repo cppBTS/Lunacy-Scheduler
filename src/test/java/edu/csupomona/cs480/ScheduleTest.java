@@ -77,6 +77,32 @@ public class ScheduleTest {
 		assertEquals(new DateTime(new Date(2017,10,25), new TimeFrame(new Time(11,0), new Time(12,0))), availableTime.get(0));
 	}
 	
+	@Test
+	public void testBestAvailable() {
+		List<TimeFrame>temp = new ArrayList<TimeFrame>();
+		temp.add(new TimeFrame(new Time(10,0), new Time(12,0)));
+		temp.add(new TimeFrame(new Time(13,30), new Time(14,00)));
+		temp.add(new TimeFrame(new Time(15,00), new Time(17,00)));
+		Schedule c = new Schedule(temp, temp, temp, temp, temp, temp, temp, new Date(2017, 10, 24), new Date(2017, 10, 31));
+		Available testU1 = new Available(c);
+		RealUser testUser = new RealUser("111", "Justin Han", null, testU1);
+		
+		List<TimeFrame>temp2 = new ArrayList<TimeFrame>();
+		temp2.add(new TimeFrame(new Time(11,0), new Time(12,0)));
+		temp2.add(new TimeFrame(new Time(13,30), new Time(14,00)));
+		temp2.add(new TimeFrame(new Time(15,00), new Time(17,00)));
+		Schedule d = new Schedule(temp2, temp2, temp2, temp2, temp2, temp2, temp2, new Date(2017, 10, 24), new Date(2017, 10, 31));
+		Available testU2 = new Available(d);
+		RealUser testUser2 = new RealUser("112", "Ubaldo Jimenez", null, testU2);
+		
+		List<RealUser>users = new ArrayList<>();
+		users.add(testUser);
+		users.add(testUser2);
+		AvailableScheduler testScheduler = new AvailableScheduler(new Date(2017,10,27), new Date(2017,10,27), users);
+		DateTime availableTime = testScheduler.bestAvailableTime();
+		assertEquals(new DateTime(new Date(2017,10,27), new TimeFrame(new Time(15,0), new Time(17,0))), availableTime);
+	}
+	
 	//Ubaldo's Test Case
 	@Test
 	public void mytestCase(){

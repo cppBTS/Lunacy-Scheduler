@@ -17,6 +17,17 @@ public class AvailableScheduler {
 		this.users = users;
 	}
 	
+	public DateTime bestAvailableTime() {
+		List<DateTime> availableTimes = findAvailableTimes();
+		DateTime best = availableTimes.get(0);
+		for(int i = 0; i < availableTimes.size(); i++) {
+			if(best.compareTo(availableTimes.get(i)) == -1) {
+				best = availableTimes.get(i);
+			}
+		}
+		return best;
+	}
+	
 	public List<DateTime> findAvailableTimes() {
 		List<DateTime> available = new ArrayList<>();
 		
