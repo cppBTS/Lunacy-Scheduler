@@ -1,6 +1,5 @@
 package edu.csupomona.cs480;
 
-
 import static org.junit.Assert.*;
 import java.util.Random;
 
@@ -10,12 +9,12 @@ import org.junit.Test;
 //Jaeseung Lee 
 //Assignment 6
 //Unit Test
-class JUnitTester {
+public class JUnitTester {
 
-	private int value1, value2, result;
+	private static int value1, value2, result;
 	
 	@BeforeClass
-	public void setUp() throws Exception {
+	public static void setUp() throws Exception {
 		Random r = new Random();
 		value1 = r.nextInt(10)+1;
 		value2 = r.nextInt(10)+1;
@@ -28,13 +27,10 @@ class JUnitTester {
 		System.out.println("value2: "+value2);
 		System.out.println("result: "+result);
 		
-		if(result== value1+value2)
-		assertTrue(true);
-		else
-			assertTrue(false);
+		assertTrue(result == value1+value2);
 	}
 	
-	int add(int n1, int n2) {
+	public int add(int n1, int n2) {
 		return n1+n2;
 	}
 }
