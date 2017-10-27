@@ -3,11 +3,11 @@
 
 ## What is this?
 
-Good question.
+Good questio.
 
 ## Where are we?
 
-Good question.
+Good question?
 
 ## What do you do?
 
