@@ -3,7 +3,7 @@
 
 ## What is this?
 
-Good question?
+Good question.
 
 ## Where are we?
 
