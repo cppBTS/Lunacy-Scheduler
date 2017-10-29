@@ -11,6 +11,7 @@
 		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-auth.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-database.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
 
 
@@ -54,24 +55,24 @@
 				<div class="jumbotron text-center">
 					<h1><strong>Enter your unavailable hours<strong></h1>
 				</div>
-
+				<form name="form" >
 				<div class="input-group">
 		        	        <span class="input-group-addon">
 		                		<span class="glyphicon glyphicon-user"></span>
 					</span>
-		                <input type="text" class="form-control" placeholder="Name" ng-model="name">
+		                <input type="text" class="form-control" placeholder="Name" ng-model="name" required>
 		        </div>
 				<div class="input-group">
 		        	        <span class="input-group-addon">
 		                		<span class="glyphicon glyphicon-blackboard"></span>
 					</span>
-		                <input type="text" class="form-control" placeholder="Group" ng-model="group">
+		                <input type="text" class="form-control" placeholder="Group" ng-model="group" required>
 		        </div>
 
 			    <div class="row">
 		      <div class="col-md-6">
 		        <p class="input-group">
-		          <input type="text" class="form-control" uib-datepicker-popup='dd-MMMM-yyyy' ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+		          <input type="text" class="form-control" uib-datepicker-popup='dd-MMMM-yyyy' ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" required>
 		          <span class="input-group-btn">
 		            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 		          </span>
@@ -80,7 +81,7 @@
 
 		      <div class="col-md-6">
 		        <p class="input-group">
-		          <input type="text" class="form-control" uib-datepicker-popup='dd-MMMM-yyyy' ng-model="dt.end" is-open="popup2.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" />
+		          <input type="text" class="form-control" uib-datepicker-popup='dd-MMMM-yyyy' ng-model="dt.end" is-open="popup2.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" required/>
 		          <span class="input-group-btn">
 		            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
 		          </span>
@@ -163,9 +164,9 @@
 		    <hr />
 		    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
 		    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
-		    <button type="button" class="btn btn-success" ng-click="submit()">Submit</button>
+		    <button type="button" class="btn btn-success" ng-disabled="form.$invalid" ng-click="submit()">Submit</button>
 		</div>
-
+		</form>
 
     </body>
 
