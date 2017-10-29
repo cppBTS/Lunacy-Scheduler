@@ -3,6 +3,8 @@ body {
 }
 
 .container {
+  color: #333333;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
   text-align: center;
   background-color: transparent;
 }
