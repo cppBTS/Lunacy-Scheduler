@@ -9,6 +9,7 @@ import org.junit.Test;
 //Jaeseung Lee 
 //Assignment 6
 //Unit Test
+// Comment: class needs to be public; beforeclass-static, public- rest
 public class JUnitTester {
 
 	private static int value1, value2, result;
