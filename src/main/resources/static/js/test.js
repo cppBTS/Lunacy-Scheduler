@@ -1,4 +1,5 @@
 var cs480App = angular.module('LunacyScheduler', ['ui.bootstrap', 'firebase']);
+var signUpMod = angular.module('SignUp', []);
 
 var config = {
 	    apiKey: "AIzaSyC28G2x-Xnel2wtmKnw3xi-a8TmWrnJ7tI",
@@ -9,10 +10,41 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
+
+signUpMod.controller('SignIn', function ($scope) {
+	$scope.signin = function() {
+		firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+			  // Handle Errors here.
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+			  alert(errorMessage);
+			  // ...
+			});
+		alert("Successfully logged in");
+	}
+});
+
 cs480App.controller('ReadDataCtrl', function ($scope, $firebaseObject,$firebaseArray) {
 	var userRef = database.ref("user");
 	$scope.users = new $firebaseArray(userRef);
 	
+});
+
+signUpMod.controller('SignUpUser', function ($scope) {
+	$scope.signup = function() {
+		if($scope.first.password != $scope.confirm.password) {
+			firebase.auth().createUserWithEmailAndPassword($scope.signup.email, $scope.confirm.password).catch(function(error) {
+				  // Handle Errors here.
+				  var errorCode = error.code;
+				  var errorMessage = error.message;
+				  alert(errorMessage);
+				  // ...
+				});
+			alert("Account successfully created");
+		} else {
+			alert("Passwords do not match!");
+		}
+	}
 });
 
 cs480App.controller('DatepickerPopupDemoCtrl', function ($scope) {
