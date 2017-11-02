@@ -15,7 +15,7 @@ cs480App.controller('ReadDataCtrl', function ($scope, $firebaseObject,$firebaseA
 	
 });
 
-cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log) {
+cs480App.controller('DatepickerPopupDemoCtrl', function ($scope) {
   
   $scope.submit = function() {
 	  database.ref('user/' + $scope.name).set({
@@ -71,66 +71,68 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log) {
     opened: false
   };
   
-  //TimePicker
 
-  $scope.hstep = 1;
-  $scope.mstep = 1;
-  
-  $scope.ismeridian = true;
-  
-  $scope.toggleMode = function() {
-    $scope.ismeridian = ! $scope.ismeridian;
-  };
+});
+
+cs480App.controller('TimePicker', function ($scope, $log) {
+
+	  $scope.hstep = 1;
+	  $scope.mstep = 1;
+	  
+	  $scope.ismeridian = true;
+	  
+	  $scope.toggleMode = function() {
+	    $scope.ismeridian = ! $scope.ismeridian;
+	  };
 
 
-  $scope.startSunday = function () {
-    $log.log('Time changed to: ' + $scope.start_sunday);
-  };
-  $scope.startMonday = function () {
-	$log.log('Time changed to: ' + $scope.start_monday);
-  };
-  $scope.startTuesday = function () {
-	$log.log('Time changed to: ' + $scope.start_tuesday);
-  };
-  $scope.startWednesday = function () {
-    $log.log('Time changed to: ' + $scope.start_wednesday);
-  };
-  $scope.startThursday = function () {
-    $log.log('Time changed to: ' + $scope.start_thursday);
-  };	
-  $scope.startFriday = function () {
-	$log.log('Time changed to: ' + $scope.start_friday);	
-  };
-  $scope.startSaturday = function () {
-	$log.log('Time changed to: ' + $scope.start_saturday);
-  };
-  $scope.endSunday = function () {
-	$log.log('Time changed to: ' + $scope.end_sunday);
-  };
-  $scope.endMonday = function () {
-	$log.log('Time changed to: ' + $scope.end_monday);
-  };
-  $scope.endTuesday = function () {
-	$log.log('Time changed to: ' + $scope.end_tuesday);
-  };
-  $scope.endWednesday = function () {
-	$log.log('Time changed to: ' + $scope.end_wednesday);
-  };
-  $scope.endThursday = function () {
-	$log.log('Time changed to: ' + $scope.end_thursday);
-  };	
-  $scope.endFriday = function () {
-	$log.log('Time changed to: ' + $scope.end_friday);	
-  };
-  $scope.endSaturday = function () {
-    $log.log('Time changed to: ' + $scope.end_saturday);
-};
-			  
-			  
-  
+	  $scope.startSunday = function () {
+	    $log.log('Time changed to: ' + $scope.start_sunday);
+	  };
+	  $scope.startMonday = function () {
+		$log.log('Time changed to: ' + $scope.start_monday);
+	  };
+	  $scope.startTuesday = function () {
+		$log.log('Time changed to: ' + $scope.start_tuesday);
+	  };
+	  $scope.startWednesday = function () {
+	    $log.log('Time changed to: ' + $scope.start_wednesday);
+	  };
+	  $scope.startThursday = function () {
+	    $log.log('Time changed to: ' + $scope.start_thursday);
+	  };	
+	  $scope.startFriday = function () {
+		$log.log('Time changed to: ' + $scope.start_friday);	
+	  };
+	  $scope.startSaturday = function () {
+		$log.log('Time changed to: ' + $scope.start_saturday);
+	  };
+	  $scope.endSunday = function () {
+		$log.log('Time changed to: ' + $scope.end_sunday);
+	  };
+	  $scope.endMonday = function () {
+		$log.log('Time changed to: ' + $scope.end_monday);
+	  };
+	  $scope.endTuesday = function () {
+		$log.log('Time changed to: ' + $scope.end_tuesday);
+	  };
+	  $scope.endWednesday = function () {
+		$log.log('Time changed to: ' + $scope.end_wednesday);
+	  };
+	  $scope.endThursday = function () {
+		$log.log('Time changed to: ' + $scope.end_thursday);
+	  };	
+	  $scope.endFriday = function () {
+		$log.log('Time changed to: ' + $scope.end_friday);	
+	  };
+	  $scope.endSaturday = function () {
+	    $log.log('Time changed to: ' + $scope.end_saturday);
+	};
+				  
+				  
+	  
 
-  $scope.clear = function() {
-    $scope.mytime = null;
-  };
-
+	  $scope.clear = function() {
+	    $scope.mytime = null;
+	  };
 });
