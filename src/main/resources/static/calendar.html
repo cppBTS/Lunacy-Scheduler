@@ -1,8 +1,15 @@
 <!DOCTYPE html>
-<html ng-app="LunacyScheduler">
+<html ng-app="FullCalendar">
     <head>
     	<meta charset='utf-8' />
     	<title>Calendar</title>
+    	
+    	<!--  CDN js files -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    	
+    	<!--  Firebase dependencies -->
+		<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
     
         <!--  local css files -->
     	<link href="vendor/FullCalendar/css/fullcalendar.min.css" rel="stylesheet"/> 
@@ -19,13 +26,15 @@
 		<script src="vendor/google/js/gcal.min.js"></script> 
 		<script src="vendor/google/js/gcal.js"></script> 
 		
-		<!--  If you want to implement Google Calendar API -->
+		<!--  local custom files -->
 		<script src="js/lunacyCalendar.js"></script> 
-		
+				
  	</head>
-	<body>
+	<body ng-controller="displayCalendar">
 
 		<div id='calendar'></div>
+		
+		<!-- <li ng-repeat="each in groups">{{ each.Date }}</li> -->
 
 	</body>
 </html>
