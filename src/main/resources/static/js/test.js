@@ -1,4 +1,4 @@
-var cs480App = angular.module('LunacyScheduler', ['ui.bootstrap', "firebase"]);
+var cs480App = angular.module('LunacyScheduler', ['ui.bootstrap', 'firebase']);
 
 var config = {
 	    apiKey: "AIzaSyC28G2x-Xnel2wtmKnw3xi-a8TmWrnJ7tI",
@@ -72,24 +72,6 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log) {
   };
   
   //TimePicker
-//  var d = new Date();
-//  d.setHours(0);
-//  d.setMinutes(0);
-//  $scope.start_sunday = d;
-//  $scope.start_monday = d;
-//  $scope.start_tuesday = d;
-//  $scope.start_wednesday = d;
-//  $scope.start_thursday = d;
-//  $scope.start_friday = d;
-//  $scope.start_saturday= d;
-//  
-//  $scope.end_sunday = d;
-//  $scope.end_monday = d;
-//  $scope.end_tuesday = d;
-//  $scope.end_wednesday = d;
-//  $scope.end_thursday = d;
-//  $scope.end_friday = d;
-//  $scope.end_saturday= d;
 
   $scope.hstep = 1;
   $scope.mstep = 1;
