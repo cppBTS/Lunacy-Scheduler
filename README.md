@@ -1,18 +1,3 @@
 # Lunacy Scheduler
 
-
-## What is this?
-
-Good questio.
-
-## Where are we?
-
-Good question?
-
-## What do you do?
-
-Good question.
-
-## Why??
-
-Hm...good question.
+Plan ahead with a schedule of every member in your group. Lunacy Scheduler lets each member list the times they are unavailable. Schedules of every member are compiled into a graphical calendar to easily view when each group member is available. 

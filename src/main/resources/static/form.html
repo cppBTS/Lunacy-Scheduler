@@ -26,13 +26,27 @@
     <script src="js/moment.js"></script>
 	<script>
 		function addRow() {
-			var table = document.getElementById("timeTable");
-			var rows = table.insertRow(table.rows.length);
-			var colCount = table.rows[0].cells.length;
-			var cell0  = rows.insertCell(0);
-			cell0.innerHTML = "Start Time";
-			var cell1  = rows.insertCell(1);
-			cell1.setAttribute("type", "time");
+			var table = document.getElementById("timeTable");		
+			
+			var row1 = table.insertRow(table.rows.length);
+			var cell0  = row1.insertCell(0);
+			cell0.innerHTML = "Start Time".bold();
+			
+			var start = []; 
+			for (var i = 1; i < 8; i++) {
+				start[i] = row1.insertCell(i);
+				start[i].innerHTML = "<input type='time' name=''>";
+			}
+
+			var row2 = table.insertRow(table.rows.length);
+			var cell1 = row2.insertCell(0);
+			cell1.innerHTML = "End Time".bold();
+			
+			var end = []; 
+			for (var i = 1; i < 8; i++) {
+				start[i] = row2.insertCell(i);
+				start[i].innerHTML = "<input type='time' name=''>";
+			}
 
 		}
 	</script>
@@ -48,11 +62,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Lunacy Scheduler</a>
+                <a class="navbar-brand" href="/">Lunacy Scheduler</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="#">FAQ</a></li>
                 </ul>
@@ -176,7 +190,9 @@
         </table>
     </div>
 
-    <button type="button" class="btn btn-default" onclick="addRow()">+</button>
+	<div align="right">
+    	<button type="button" class="btn btn-default" onclick="addRow()">Add time range</button>
+	</div>
 
     <div class="container" align="center">
         <hr />
