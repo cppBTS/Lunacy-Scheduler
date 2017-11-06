@@ -90,7 +90,7 @@
 		    </div>
 		  </div>
 
-		<div class="container-fluid" ng-controller="TimePicker">
+		<div class="container-fluid">
       <uib-tabset active="active">
         <uib-tab index="0" heading="Sunday">
           <div style="padding-bottom:50px">
@@ -126,7 +126,7 @@
       								<th>Start Time</th>
       								<th>End Time</th>
       							</tr>
-      							<tr ng-repeat="sunAvail in sunAvails">
+      							<tr ng-repeat="sunAvail in sunAvails track by sunAvail.start">
       								<td>{{sunAvail.start | date:'shortTime' }}</td>
       								<td>{{sunAvail.end | date:'shortTime' }}</td>
                       <td><button type="button" class="btn btn-sm btn-danger" ng-click="removeSun(sunAvail.start)">Remove</button></td>
@@ -171,7 +171,7 @@
       								<th>Start Time</th>
       								<th>End Time</th>
       							</tr>
-      							<tr ng-repeat="monAvail in monAvails">
+      							<tr ng-repeat="monAvail in monAvails track by monAvail.start">
       								<td>{{monAvail.start | date:'shortTime' }}</td>
       								<td>{{monAvail.end | date:'shortTime' }}</td>
                       <td><button type="button" class="btn btn-sm btn-danger" ng-click="removeMon(monAvail.start)">Remove</button></td>
@@ -216,7 +216,7 @@
       								<th>Start Time</th>
       								<th>End Time</th>
       							</tr>
-      							<tr ng-repeat="tuesAvail in tuesAvails">
+      							<tr ng-repeat="tuesAvail in tuesAvails track by tuesAvail.start">
       								<td>{{tuesAvail.start | date:'shortTime' }}</td>
       								<td>{{tuesAvail.end | date:'shortTime' }}</td>
                       <td><button type="button" class="btn btn-sm btn-danger" ng-click="removeTues(tuesAvail.start)">Remove</button></td>
@@ -261,7 +261,7 @@
       								<th>Start Time</th>
       								<th>End Time</th>
       							</tr>
-      							<tr ng-repeat="wedAvail in wedAvails">
+      							<tr ng-repeat="wedAvail in wedAvails track by wedAvail.start">
       								<td>{{wedAvail.start | date:'shortTime' }}</td>
       								<td>{{wedAvail.end | date:'shortTime' }}</td>
                       <td><button type="button" class="btn btn-sm btn-danger" ng-click="removeWed(wedAvail.start)">Remove</button></td>
@@ -306,7 +306,7 @@
       								<th>Start Time</th>
       								<th>End Time</th>
       							</tr>
-      							<tr ng-repeat="thursAvail in thursAvails">
+      							<tr ng-repeat="thursAvail in thursAvails track by thursAvail.start">
       								<td>{{thursAvail.start | date:'shortTime' }}</td>
       								<td>{{thursAvail.end | date:'shortTime' }}</td>
                       <td><button type="button" class="btn btn-sm btn-danger" ng-click="removeThurs(thursAvail.start)">Remove</button></td>
@@ -351,7 +351,7 @@
       								<th>Start Time</th>
       								<th>End Time</th>
       							</tr>
-      							<tr ng-repeat="friAvail in friAvails">
+      							<tr ng-repeat="friAvail in friAvails track by friAvail.start">
       								<td>{{friAvail.start | date:'shortTime' }}</td>
       								<td>{{friAvail.end | date:'shortTime' }}</td>
                       <td><button type="button" class="btn btn-sm btn-danger" ng-click="removeFri(friAvail.start)">Remove</button></td>
@@ -396,7 +396,7 @@
       								<th>Start Time</th>
       								<th>End Time</th>
       							</tr>
-      							<tr ng-repeat="satAvail in satAvails">
+      							<tr ng-repeat="satAvail in satAvails track by satAvail.start">
       								<td>{{satAvail.start | date:'shortTime' }}</td>
       								<td>{{satAvail.end | date:'shortTime' }}</td>
                       <td><button type="button" class="btn btn-sm btn-danger" ng-click="removeSat(satAvail.start)">Remove</button></td>
@@ -421,11 +421,6 @@
 
     </body>
 
-
-  <hr>
-
-  <button type="button" class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
-  <button type="button" class="btn btn-danger" ng-click="clear()">Clear</button>
 
 </div>
     <!-- FOOTER -->
