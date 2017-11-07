@@ -121,22 +121,22 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log) {
 					angular.forEach($scope.sunAvails, function(item) {
 						sunday.push({start: item.start.toString(), end: item.end.toString()});
 					});
-					angular.forEach($scope.monAvails, function(item, index) {
+					angular.forEach($scope.monAvails, function(item) {
 						monday.push({start: item.start.toString(), end: item.end.toString()});
 					});
-					angular.forEach($scope.tuesAvails, function(item, index) {
+					angular.forEach($scope.tuesAvails, function(item) {
 						tuesday.push({start: item.start.toString(), end: item.end.toString()});
 					});
-					angular.forEach($scope.wedAvails, function(item, index) {
+					angular.forEach($scope.wedAvails, function(item) {
 						wednesday.push({start: item.start.toString(), end: item.end.toString()});
 					});
-					angular.forEach($scope.thursAvails, function(item, index) {
+					angular.forEach($scope.thursAvails, function(item) {
 						thursday.push({start: item.start.toString(), end: item.end.toString()});
 					});
-					angular.forEach($scope.friAvails, function(item, index) {
+					angular.forEach($scope.friAvails, function(item) {
 						friday.push({start: item.start.toString(), end: item.end.toString()});
 					});
-					angular.forEach($scope.satAvails, function(item, index) {
+					angular.forEach($scope.satAvails, function(item) {
 						saturday.push({start: item.start.toString(), end: item.end}.toString());
 					});
 
