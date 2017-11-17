@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import edu.csupomona.cs480.data.provider.FSUserManager;
-import edu.csupomona.cs480.data.provider.UserManager;
+
+import edu.csupomona.cs480.data.provider.*;
 
 @Configuration
 @EnableAutoConfiguration
@@ -26,6 +26,12 @@ public class App {
         return userManager;
     }
 
+    @Bean
+    public SchedulerManager schedulerManager() {
+    	SchedulerManager schedulerManager = new FSSchedulerManager();
+    	return schedulerManager;
+    }
+
     /**
      * This is the running main method for the web application.
      * Please note that Spring requires that there is one and
@@ -34,6 +40,7 @@ public class App {
      * you cannot put extra main method when building your project.
      */
     public static void main(String[] args) throws Exception {
+
         // Run Spring Boot
         SpringApplication.run(App.class, args);
     }

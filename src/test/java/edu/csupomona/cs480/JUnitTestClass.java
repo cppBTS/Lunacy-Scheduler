@@ -17,8 +17,6 @@ public class JUnitTestClass {
 
 	@Test
 	public void test() {
-		Date today = new Date(10, 22, 2017, DayType.SUNDAY);
-		Date tomorrow = new Date(10, 23, 2017, DayType.MONDAY);
 		Time noon = new Time(12, 00);
 		Time midnight = new Time(24, 00);
 		TimeFrame noonToMidnight = new TimeFrame(noon, midnight);

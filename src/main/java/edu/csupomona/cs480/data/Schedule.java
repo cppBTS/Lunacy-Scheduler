@@ -59,9 +59,6 @@ public class Schedule {
 		return schedule;
 	}
 	
-	public TimeFrame getSchedule(int day) {
-		return schedule[day];
-	}
 	
 	public void setSchedule(TimeFrame[] schedule) {
 		this.schedule = schedule;
@@ -71,12 +68,23 @@ public class Schedule {
 		this.schedule[day] = schedule;
 	}
 	
-	public TimeFrame findbestTime(Schedule other) {
-		TimeFrame best = new TimeFrame(new Time(1,20, "AM"), new Time(2,30, "AM"));
-		
-		return best;
+	public List<TimeFrame> getSchedule(int day) {
+		if(day == 0) {
+			return sunday;
+		} else if(day == 1) {
+			return monday;
+		} else if(day == 2) {
+			return tuesday;
+		} else if(day ==3) {
+			return wednesday;
+		} else if(day == 4) {
+			return thursday;
+		} else if(day == 5) {
+			return friday;
+		} else {
+			return saturday;
+		}
 	}
-
 	public List<TimeFrame> getMonday() {
 		return monday;
 	}

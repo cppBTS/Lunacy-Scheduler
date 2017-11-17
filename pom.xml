@@ -112,6 +112,11 @@
         <artifactId>jackson-databind</artifactId>
         <version>LATEST</version>
     </dependency>
+    <dependency>
+  		<groupId>com.google.firebase</groupId>
+  		<artifactId>firebase-admin</artifactId>
+  		<version>5.5.0</version>
+	</dependency>
 		
 	</dependencies>
 
