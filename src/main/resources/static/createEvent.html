@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="LunacyScheduler">
+<html lang="en" ng-app="lunacyscheduler.createEvent">
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,12 +21,14 @@
       <!-- local files -->
       <script src="/js/bootstrap.js"></script>
       <script src="/js/bootstrap.min.js"></script>
+       <script src="/js/eventCalendar.js"></script>
+       <script src="/js/angular-bootstrap.js"></script>
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <link href="css/sticky-footer.css" rel="stylesheet">
       <script src="js/moment.js"></script>
       
    </head>
-   <body>
+   <body ng-controller="DatepickerPopupDemoCtrl">
       <nav class="navbar navbar-default">
          <div class="container-fluid">
             <div class="navbar-header">
@@ -60,11 +62,11 @@
       <div class="container">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-              <label for="inputTitle">Title</label>
+              <label for="eventTitle">Title</label>
               <input type="text" class="form-control" id="eventTitle" ng-model="title">
             </div>
             <div class="form-group">
-              <label for="inputDescription">Description</label>
+              <label for="eventDescription">Description</label>
               <textarea class="form-control" rows="5" id="description"></textarea>
             </div>
         </form>      
@@ -90,14 +92,14 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container" align="center">
         	<button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
         	<button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
     </div>
     
      <div class="container">
-        <table class="table table-bordered>
+        <table class="table table-bordered">
             <tbody>
                 <tr>
                 	<th scope="row">Start Time</th>
@@ -116,7 +118,7 @@
     </div>
     
     <div class="container" align="center">
-        <button type="button" class="btn btn-success" ng-click="">Find best time!</button>
+        <button type="button" class="btn btn-success" ng-click="submit()">Find best time!</button>
     </div>
       
    </body>
