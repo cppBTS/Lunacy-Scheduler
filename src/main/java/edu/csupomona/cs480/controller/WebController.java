@@ -17,15 +17,17 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.csupomona.cs480.App;
-import edu.csupomona.cs480.data.User;
-import edu.csupomona.cs480.data.provider.UserManager;
+import edu.csupomona.cs480.data.*;
+import edu.csupomona.cs480.data.provider.*;
 
 
 /**
@@ -49,6 +51,9 @@ public class WebController {
 	 */
 	@Autowired
 	private UserManager userManager;
+
+	@Autowired
+	private SchedulerManager schedulerManager;
 
 	/**
 	 * This is a simple example of how the HTTP API works.
@@ -144,7 +149,24 @@ public class WebController {
 		modelAndView.addObject("users", listAllUsers());
 		return modelAndView;
 	}
-
+	
+	@RequestMapping(value = "/bestTime", method = RequestMethod.POST)
+	@ResponseBody String getBestAvailable(
+			@RequestBody AngularScheduler scheduler) {
+		System.out.println(scheduler.Test());
+		return scheduler.Test();
+	}
+	@RequestMapping(value = "/test", method = RequestMethod.POST)
+	@ResponseBody String test(
+			@RequestBody Schedule1 schedules) {
+		return "worked";
+	}
+	
+//	@RequestMapping(value = "/bestTimes", method = RequestMethod.GET)
+//	@ResponseBody List<String> getBestAvailables(
+//			@RequestBody GroupAvailability schedules) {
+//		return schedulerManager.getBestAvailables(schedules);
+//	}
 	//Justin's API Call
 	@RequestMapping(value = "/cs480/jhan", method = RequestMethod.GET)
 	String Test() {
@@ -153,7 +175,7 @@ public class WebController {
 				+ "</body></html>";
 		return message;
 	}
-	
+
 	//Justin's Assignment 4
 	@RequestMapping(value = "/cs480/soup", method = RequestMethod.GET)
 	String Assignment4() {
@@ -169,13 +191,13 @@ public class WebController {
 		}
 		return message;
 	}
-	
+
 	//Johnny's method
 	@RequestMapping(value = "/cs480/johnnylu", method = RequestMethod.GET)
 	String msg() {
 		return "Johnny was here";
 	}
-	
+
 	// Johnny Assignment 4
 	@RequestMapping(value = "/cs480/cmsio", method = RequestMethod.GET)
 	String getMsg() {
@@ -194,25 +216,25 @@ public class WebController {
 		@RequestMapping(value = "/cs480/leej", method = RequestMethod.GET)
 		String Test2() {
 			String message = "<!DOCTYPE html>"
-					+ "<html>\r\n" + 
-					"<head>\r\n" + 
-					"<title> Jason's Page. </title>\r\n" + 
+					+ "<html>\r\n" +
+					"<head>\r\n" +
+					"<title> Jason's Page. </title>\r\n" +
 					"</head>\r\n" +
-					"<body>\r\n" + 
-					"<h1>Welcome to Jason's Page</h1>\r\n" + 
-					"<p>My favorite <strong>video games</strong> are:<br>\r\n" + 
-					"<p>League of Legend<br> <br> Overwatch<p/>\r\n" + 
-					"<h2>My favorite website<h2>\r\n" + 
-					" <a href=\"http://youtube.com\">???	\r\n" + 
-					"</body>\r\n" + 
+					"<body>\r\n" +
+					"<h1>Welcome to Jason's Page</h1>\r\n" +
+					"<p>My favorite <strong>video games</strong> are:<br>\r\n" +
+					"<p>League of Legend<br> <br> Overwatch<p/>\r\n" +
+					"<h2>My favorite website<h2>\r\n" +
+					" <a href=\"http://youtube.com\">???	\r\n" +
+					"</body>\r\n" +
 					"</html>";
 			return message;
 		}
-		
+
 		// Jason's Assignment #4 ;
 		@RequestMapping(value = "/cs480/leej_email", method = RequestMethod.GET)
 		String send() {
-		          
+
 			/*String hostServer = "asdf.ghijk.com";
 			String emailID = "notcsmajor1234@gmail.com";
 			Properties p = System.getProperties();
@@ -222,30 +244,30 @@ public class WebController {
 			 */
 			return "Working on email sending";
 		}
-		
+
 		//Ubaldo's Method Call
 		@RequestMapping(value = "user/simplyvaldo", method = RequestMethod.GET, produces = "text/html")
 		ModelAndView myHomepage() {
-			
+
 			ModelAndView modelAndView = new ModelAndView("simplyvaldo");
 			return modelAndView;
 		}
-		
-		//Ubaldo's Assignment #4 (Joda-Time dependency) 
+
+		//Ubaldo's Assignment #4 (Joda-Time dependency)
 		@RequestMapping(value = "user/simplyvaldo/name", method = RequestMethod.GET)
 		String timeZones() {
-			
+
 			DateTime time1 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("UTC"));
 			DateTime time2 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("America/Los_Angeles"));
 			DateTime time3 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("America/Chicago"));
 			DateTime time4 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("America/New_York"));
 			DateTime time5 = new DateTime(System.currentTimeMillis(), DateTimeZone.forID("Asia/Hong_Kong"));
-		    
-			return  "<h1>Current Exact Time</h1>" + 
-					"<b>" + time1.getZone().toString() + "</b>" + ": " + time1.toString(DateTimeFormat.fullDateTime()) + "<br><br>" + 
-					"<b>" + time2.getZone().toString() + "</b>" + ": " + time2.toString(DateTimeFormat.fullDateTime()) + "<br><br>" +  
-					"<b>" + time3.getZone().toString() + "</b>" + ": " + time3.toString(DateTimeFormat.fullDateTime()) + "<br><br>" +  
-					"<b>" + time4.getZone().toString() + "</b>" + ": " + time4.toString(DateTimeFormat.fullDateTime()) + "<br><br>" + 
+
+			return  "<h1>Current Exact Time</h1>" +
+					"<b>" + time1.getZone().toString() + "</b>" + ": " + time1.toString(DateTimeFormat.fullDateTime()) + "<br><br>" +
+					"<b>" + time2.getZone().toString() + "</b>" + ": " + time2.toString(DateTimeFormat.fullDateTime()) + "<br><br>" +
+					"<b>" + time3.getZone().toString() + "</b>" + ": " + time3.toString(DateTimeFormat.fullDateTime()) + "<br><br>" +
+					"<b>" + time4.getZone().toString() + "</b>" + ": " + time4.toString(DateTimeFormat.fullDateTime()) + "<br><br>" +
 					"<b>" + time5.getZone().toString() + "</b>" + ": " + time5.toString(DateTimeFormat.fullDateTime()) + "<br><br>" ;
 		}
 }

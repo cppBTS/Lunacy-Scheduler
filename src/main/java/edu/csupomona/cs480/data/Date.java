@@ -7,20 +7,12 @@ public class Date implements Comparable<Date>{
 	private int year;
 	private int month;
 	private int date;
-	private DayType dayType;
 	
 	public Date(int year, int month, int date) {
 		super();
 		this.year = year;
 		this.month = month;
 		this.date = date;
-	}
-	public Date(int year, int month, int date, DayType dayType) {
-		super();
-		this.year = year;
-		this.month = month;
-		this.date = date;
-		this.dayType = dayType;
 	}
 
 	public int getDaysBetween(Date date) {
@@ -110,11 +102,5 @@ public class Date implements Comparable<Date>{
 				+ "]";
 	}
 	
-	public DayType getDayType() {
-		return dayType;
-	}
-	public void setDayType(DayType dayType) {
-		this.dayType = dayType;
-	}
 
 }

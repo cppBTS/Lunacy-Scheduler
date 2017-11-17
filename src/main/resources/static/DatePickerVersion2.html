@@ -49,25 +49,9 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
-	<div class="container">
-		<table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Group</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                </tr>
-              </thead>
-              <tbody>
-              	<tr ng-repeat="user in users">
-              		<th>{{user.user}}</th>
-              		<th>{{user.group}}</th>
-              		<th>{{user.start}}</th>
-              		<th>{{user.end}}</th>
-              	</tr>
-              </tbody>
-         </table>
+	<div class="container" ng-controller="ReadDataCtrl">
+		<hr/>
+		<button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
 	</div>
 </body>
 

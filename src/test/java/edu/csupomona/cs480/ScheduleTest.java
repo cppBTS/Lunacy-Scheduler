@@ -13,17 +13,6 @@ import edu.csupomona.cs480.data.Date;
  * Unit test for scheduler.
  */
 public class ScheduleTest {
-	@Test
-	public void testGetBestSchedule() {
-		TimeFrame testTimes[] = new TimeFrame[7];
-		TimeFrame testTimes2[] = new TimeFrame[7];
-		Schedule a = new Schedule(testTimes);
-		Schedule b = new Schedule(testTimes2);
-		TimeFrame best = new TimeFrame(new Time(1,20,"AM"), new Time(2,30,"AM"));
-		TimeFrame tested = a.findbestTime(b);
-		
-		assertEquals(best, tested);
-	}
 	
 	//Justin's TestCase
 	@Test

@@ -3,37 +3,36 @@ package edu.csupomona.cs480.data;
 import org.joda.time.LocalTime;
 
 public class TimeFrame{
-	private Time startTime;
-	private Time endTime;
+	private Time start;
+	private Time end;
 	public TimeFrame(Time startTime, Time endTime) {
-		super();
-		this.startTime = startTime;
-		this.endTime = endTime;
+		this.start = startTime;
+		this.end = endTime;
 	}
 	public Time getStartTime() {
-		return startTime;
+		return start;
 	}
 	public void setStartTime(Time startTime) {
-		this.startTime = startTime;
+		this.start = startTime;
 	}
 	public Time getEndTime() {
-		return endTime;
+		return end;
 	}
 	public void setEndTime(Time endTime) {
-		this.endTime = endTime;
+		this.end = endTime;
 	}
 	@Override
 	public String toString() {
-		return "TimeFrame [startTime=" + startTime + ", endTime=" + endTime
+		return "TimeFrame [startTime=" + start + ", endTime=" + end
 				+ "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
+		result = prime * result + ((end == null) ? 0 : end.hashCode());
 		result = prime * result
-				+ ((startTime == null) ? 0 : startTime.hashCode());
+				+ ((start == null) ? 0 : start.hashCode());
 		return result;
 	}
 	@Override
@@ -45,30 +44,30 @@ public class TimeFrame{
 		if (getClass() != obj.getClass())
 			return false;
 		TimeFrame other = (TimeFrame) obj;
-		if (endTime == null) {
-			if (other.endTime != null)
+		if (end == null) {
+			if (other.end != null)
 				return false;
-		} else if (!endTime.equals(other.endTime))
+		} else if (!end.equals(other.end))
 			return false;
-		if (startTime == null) {
-			if (other.startTime != null)
+		if (start == null) {
+			if (other.start != null)
 				return false;
-		} else if (!startTime.equals(other.startTime))
+		} else if (!start.equals(other.start))
 			return false;
 		return true;
 	}
 	public boolean contains(TimeFrame second) {
 		// TODO Auto-generated method stub
-		if(second.getStartTime().compareTo(startTime) >= 0 && second.getStartTime().compareTo(endTime) <= 0) {
+		if(second.getStartTime().compareTo(start) >= 0 && second.getStartTime().compareTo(end) <= 0) {
 			return true;
 		}
 		return false;
 	}
 	public Time getHours() {
 		// TODO Auto-generated method stub
-		int hour = endTime.getHour() - startTime.getHour();
-		LocalTime test = new LocalTime(hour, endTime.getMinute());
-		test.minusMinutes(startTime.getMinute());
+		int hour = end.getHour() - start.getHour();
+		LocalTime test = new LocalTime(hour, end.getMinute());
+		test.minusMinutes(start.getMinute());
 		
 		return new Time(test.getHourOfDay(), test.getMinuteOfHour());
 	}

@@ -3,25 +3,9 @@ package edu.csupomona.cs480.data;
 public class Time implements Comparable<Time>{
 	private int hour;
 	private int minute;
-	private String dayofTime;
-	public Time(int hour, int minute, String dayofTime) {
-		this.hour = hour;
-		this.minute = minute;
-		this.dayofTime = dayofTime;
-	}
 	public Time(int hour, int minute) {
 		this.hour = hour;
 		this.minute = minute;
-	}
-	public void convertto24() {
-		if(isAM() && hour == 12) {
-			hour = 0;
-		} else if(!isAM() && hour != 12) {
-			hour+=12;
-		}
-	}
-	public boolean isAM() {
-		return dayofTime.equals("AM");
 	}
 	public int getHour() {
 		return hour;
@@ -35,18 +19,6 @@ public class Time implements Comparable<Time>{
 	public void setMinute(int minute) {
 		this.minute = minute;
 	}
-	/**
-	 * @return the dayofTime
-	 */
-	public String getDayofTime() {
-		return dayofTime;
-	}
-	/**
-	 * @param dayofTime the dayofTime to set
-	 */
-	public void setDayofTime(String dayofTime) {
-		this.dayofTime = dayofTime;
-	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -54,8 +26,6 @@ public class Time implements Comparable<Time>{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((dayofTime == null) ? 0 : dayofTime.hashCode());
 		result = prime * result + hour;
 		result = prime * result + minute;
 		return result;
@@ -72,11 +42,6 @@ public class Time implements Comparable<Time>{
 		if (getClass() != obj.getClass())
 			return false;
 		Time other = (Time) obj;
-		if (dayofTime == null) {
-			if (other.dayofTime != null)
-				return false;
-		} else if (!dayofTime.equals(other.dayofTime))
-			return false;
 		if (hour != other.hour)
 			return false;
 		if (minute != other.minute)
