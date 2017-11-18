@@ -3,6 +3,8 @@ package edu.csupomona.cs480.data;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -32,9 +34,27 @@ public class Database {
 
 		    	FirebaseApp.initializeApp(options);
 		    	final FirebaseDatabase database = FirebaseDatabase.getInstance();
-		    	System.out.println(database);
-		    	DatabaseReference ref = database.getReference("userss");
+		    	DatabaseReference ref = database.getReference("users");
+
 		    	ref.setValueAsync("HI");
+                Map<String, String> users = new HashMap<>();
+                users.put("alanisawesome", "June 23, 1912");
+                users.put("gracehop", "December 9, 1906");
+
+                ref.setValueAsync(users);
+                ref.addListenerForSingleValueEvent( new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // ...
+                        System.out.print(dataSnapshot.getChildrenCount());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // ...
+                    }
+                });
+
 		    	ref.addValueEventListener(new ValueEventListener() {
 		    	    @Override
 		    	    public void onDataChange(DataSnapshot dataSnapshot) {

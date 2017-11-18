@@ -1,13 +1,21 @@
 package edu.csupomona.cs480.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.websocket.Session;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.*;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -52,9 +60,6 @@ public class WebController {
 	@Autowired
 	private UserManager userManager;
 
-	@Autowired
-	private SchedulerManager schedulerManager;
-
 	/**
 	 * This is a simple example of how the HTTP API works.
 	 * It returns a String "OK" in the HTTP response.
@@ -84,6 +89,69 @@ public class WebController {
 	User getUser(@PathVariable("userId") String userId) {
 		User user = userManager.getUser(userId);
 		return user;
+	}
+
+	@RequestMapping(value = "/set", method = RequestMethod.GET)
+	void addNewData() {
+
+		FileInputStream serviceAccount;
+		try {
+			serviceAccount = new FileInputStream("lunacy-scheduler-firebase-adminsdk-l721m-606ad2f275.json");
+
+			FirebaseOptions options;
+
+			try {
+				options = new FirebaseOptions.Builder()
+						.setCredentials(GoogleCredentials.fromStream(serviceAccount))
+						.setDatabaseUrl("https://lunacy-scheduler.firebaseio.com")
+						.setDatabaseAuthVariableOverride(null)
+						.build();
+
+
+
+				FirebaseApp.initializeApp(options);
+				final FirebaseDatabase database = FirebaseDatabase.getInstance();
+				DatabaseReference ref = database.getReference("users");
+
+				ref.setValueAsync("HI");
+				Map<String, String> users = new HashMap<>();
+				users.put("alanisawesome", "June 23, 1912");
+				users.put("gracehop", "December 9, 1906");
+
+				ref.setValueAsync(users);
+				ref.addListenerForSingleValueEvent( new ValueEventListener() {
+					@Override
+					public void onDataChange(DataSnapshot dataSnapshot) {
+						// ...
+						System.out.print(dataSnapshot.getChildrenCount());
+					}
+
+					@Override
+					public void onCancelled(DatabaseError databaseError) {
+						// ...
+					}
+				});
+
+				ref.addValueEventListener(new ValueEventListener() {
+					@Override
+					public void onDataChange(DataSnapshot dataSnapshot) {
+						System.out.println("HELLO");
+					}
+
+					@Override
+					public void onCancelled(DatabaseError databaseError) {
+						System.out.println("The read failed: " + databaseError.getCode());
+					}
+				});
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

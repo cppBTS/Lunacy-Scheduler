@@ -26,12 +26,6 @@ public class App {
         return userManager;
     }
 
-    @Bean
-    public SchedulerManager schedulerManager() {
-    	SchedulerManager schedulerManager = new FSSchedulerManager();
-    	return schedulerManager;
-    }
-
     /**
      * This is the running main method for the web application.
      * Please note that Spring requires that there is one and
@@ -43,5 +37,6 @@ public class App {
 
         // Run Spring Boot
         SpringApplication.run(App.class, args);
+
     }
 }
