@@ -10,6 +10,21 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
+    $(document).ready(function() {
+    var boxOptions = "";
+    var dropDown = document.getElementById("category");
+    var query = firebase.database().ref("user").orderByKey();
+               query.once("value")
+                .then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        var user = childSnapshot.key;
+                        jQuery('<option/>', {
+                                value: user,
+                                html: user
+                                }).appendTo('#dropdown select');
+                    });
+                });
+    });
 
 signUpMod.controller('SignIn', function ($scope) {
 	$scope.signin = function() {
