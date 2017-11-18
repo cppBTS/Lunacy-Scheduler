@@ -26,6 +26,7 @@
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <link href="css/sticky-footer.css" rel="stylesheet">
       <script src="js/moment.js"></script>
+
       
    </head>
    <body ng-controller="DatepickerPopupDemoCtrl">
@@ -69,10 +70,17 @@
               <label for="eventDescription">Description</label>
               <textarea class="form-control" rows="5" id="description"></textarea>
             </div>
-        </form>      
+        </form>
+      </div>
+
+      <div id='dropdown' align="center">
+          <select name="category" id="category">
+              <option value="">Select members to invite</option>
+          </select>
+      </div>
         
 
-    <div class="row">
+    <div class="container">
 		<div class="col-md-6">
                 <p class="input-group">
                     <input type="text" class="form-control" uib-datepicker-popup='dd-MMMM-yyyy' ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
