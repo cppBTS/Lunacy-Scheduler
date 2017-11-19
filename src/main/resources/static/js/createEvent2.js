@@ -18,9 +18,12 @@ cs480App.controller('Datepicker', function ($scope, $firebaseObject, $firebaseAr
   users.$loaded()
       .then(function(){
           angular.forEach(users, function(user) {
-              var option = "<option>" + user.user + "</option>"
+              var option = "<option>" + user.$id + "</option>"
               options.push(option);
-              console.log(user.user);
+							console.log(user.$id); //This grabs the Object ID
+
+							/*This will only work if we have a user:{name} under object
+							console.log(user.user); */
           })
 
           $('.selectpicker').html(options);
