@@ -218,7 +218,7 @@ public class WebController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/bestTime", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/bestTime", method = RequestMethod.POST)
 	@ResponseBody String getBestAvailable(
 			@RequestBody AngularScheduler scheduler) {
 		System.out.println(scheduler.Test());
@@ -228,7 +228,7 @@ public class WebController {
 	@ResponseBody String test(
 			@RequestBody Schedule1 schedules) {
 		return "worked";
-	}
+	}*/
 	
 //	@RequestMapping(value = "/bestTimes", method = RequestMethod.GET)
 //	@ResponseBody List<String> getBestAvailables(
