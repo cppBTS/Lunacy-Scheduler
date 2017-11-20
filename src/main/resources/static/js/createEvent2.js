@@ -70,4 +70,14 @@ cs480App.controller('Datepicker', function ($scope, $firebaseObject, $firebaseAr
     opened: false
   };
 
+	$scope.submit = function() {
+
+		var targets = [];
+		$.each($(".selectpicker option:selected"), function(){
+		targets.push($(this).val());
+		});
+
+		alert("You have selected the targets - " + targets.join(", "))
+	};
+
 });

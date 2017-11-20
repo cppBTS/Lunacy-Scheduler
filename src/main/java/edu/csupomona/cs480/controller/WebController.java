@@ -217,7 +217,7 @@ public class WebController {
 		modelAndView.addObject("users", listAllUsers());
 		return modelAndView;
 	}
-	
+
 	/*@RequestMapping(value = "/bestTime", method = RequestMethod.POST)
 	@ResponseBody String getBestAvailable(
 			@RequestBody AngularScheduler scheduler) {
@@ -229,7 +229,7 @@ public class WebController {
 			@RequestBody Schedule1 schedules) {
 		return "worked";
 	}*/
-	
+
 //	@RequestMapping(value = "/bestTimes", method = RequestMethod.GET)
 //	@ResponseBody List<String> getBestAvailables(
 //			@RequestBody GroupAvailability schedules) {
