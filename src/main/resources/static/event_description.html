@@ -8,7 +8,7 @@
       <link rel="icon" href="/images/logo.png">
 
       <!--  CDN js files -->
-      <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 
       <!--  Firebase dependencies -->
@@ -55,11 +55,51 @@
         <!--/.container-fluid -->
      </nav>
 
-     <hr>{{title}}
-     <hr>{{description}}
-     <hr>{{start}}
-     <hr>{{end}}
-     <div ng-repeat="each in users"><hr>{{ each }}</div>
+     <div align="center">
+       <hr><b>Title:</b> {{title}}
+       <hr><b>Description:</b>  {{description}}
+       <hr><b>Start Time:</b>  {{start}}
+       <hr><b>End Time:</b>  {{end}}
+     </div>
+
+      <div class="container">
+    	<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Users</h3>
+						<div class="pull-right">
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+								<i class="glyphicon glyphicon-filter"></i>
+							</span>
+						</div>
+					</div>
+					<div class="panel-body">
+						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Users" />
+					</div>
+					<table class="table table-hover" id="dev-table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Username</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="each in users">
+								<td>{{$index + 1}}</td>
+								<td>{{ each.first }}</td>
+								<td>{{ each.last }}</td>
+								<td>{{ each.username }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+    </div>
+		</div>
+
 
    </body>
 
