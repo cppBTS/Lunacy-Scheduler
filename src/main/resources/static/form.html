@@ -81,7 +81,7 @@
 
     <div class="container">
         <div class="jumbotron text-center">
-            <h1 style="background-image:url(images/form_center.jpg)">Enter your unavailable hours</h1>
+            <h1 style="background-image:url(images/form_center.jpg)">Enter your available hours</h1>
                 <p>We'll match you up with the best available times with other members in your group.</p>
         </div>
     </div>
@@ -89,8 +89,12 @@
 	<div class="container">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-              <label for="inputName">Name</label>
-              <input type="text" class="form-control" id="exampleInputName2" ng-model="name">
+              <label for="inputName">First Name</label>
+              <input type="text" class="form-control" id="exampleInputName2" ng-model="nameFirst">
+            </div>
+            <div class="form-group">
+                <label for="inputName">Last Name</label>
+                <input type="text" class="form-control" id="exampleInputName3" ng-model="nameLast">
             </div>
             <div class="form-group">
               <label for="inputEmail">Email</label>
@@ -198,7 +202,7 @@
         <hr />
         <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
         <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
-        <button type="button" class="btn btn-success" ng-click="submit()">Submit</button>
+        <button type="button" class="btn btn-success" ng-click="submit()" onclick="location.href='createEvent2.html'">Submit</button>
     </div>
 
 </body>
