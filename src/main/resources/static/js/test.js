@@ -144,89 +144,61 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 			  database.ref('user/' + $scope.name).set({
 				  	user: $scope.name,
 				  	group: $scope.group,
-				    start: $scope.dt.getMonth() + 1 + "/" + $scope.dt.getDate() + "/" + $scope.dt.getFullYear(),
-				    end: $scope.dt.end.getMonth() + 1 +  "/" + $scope.dt.end.getDate() + "/" + $scope.dt.end.getFullYear()
+				    start: $scope.dt.getTime(),
+				    end: $scope.dt.end.getTime()
 				  });
-			  		var counter6 = 0;
 					angular.forEach($scope.sunAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/sunday/TimeFrame/' + counter6).set({
+						database.ref('user/' + $scope.name + '/schedule/sunday/').push().set({
 								
-											start: { Time: {hour:item.start.getHours() ,
-											minute:item.start.getMinutes()}},
-											end: {Time: {hour:item.end.getHours() ,
-											minute:item.end.getMinutes()}} 
+											start: item.start.getTime(),
+											end: item.end.getTime()
 									
 							});
-						counter6 = counter6 + 1;
 					});
-					var counter5 = 0;
 					angular.forEach($scope.monAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/monday/TimeFrame/'+counter5).set({
-											start: { Time : {hour:item.start.getHours() ,
-											minute:item.start.getMinutes()}},
-											end: { Time: {hour:item.end.getHours() ,
-											minute:item.end.getMinutes()}} 
+						database.ref('user/' + $scope.name + '/schedule/monday/').push().set({
+                            start: item.start.getTime(),
+                            end: item.end.getTime()
 							});
-						counter5 = counter5 + 1;
 					});
 
-					var counter4 = 0;
 					angular.forEach($scope.tuesAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/tuesday/TimeFrame/' + counter4).set({
-										
-											start: { Time: {hour:item.start.getHours() ,
-											minute:item.start.getMinutes()}},
-											end: { Time: {hour:item.end.getHours() ,
-											minute:item.end.getMinutes()}} 
+						database.ref('user/' + $scope.name + '/schedule/tuesday/').push().set({
+
+                            start: item.start.getTime(),
+                            end: item.end.getTime()
 							});
-						counter4 = counter4+1;
 					});
 
-					var counter3 = 0;
 					angular.forEach($scope.wedAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/wednesday/TimeFrame/' + counter3).set({
-							
-								start: { Time: {hour:item.start.getHours() ,
-								minute:item.start.getMinutes()}},
-								end: { Time: {hour:item.end.getHours() ,
-								minute:item.end.getMinutes()}} 
+						database.ref('user/' + $scope.name + '/schedule/wednesday/').push().set({
+
+                            start: item.start.getTime(),
+                            end: item.end.getTime()
 							});
-						counter3 = counter3 + 1;
 					});
 
-					var counter2 = 0;
 					angular.forEach($scope.thursAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/thursday/TimeFrame/' + counter2).set({
-							
-								start: { Time: {hour:item.start.getHours() ,
-								minute:item.start.getMinutes()}},
-								end: { Time: {hour:item.end.getHours() ,
-								minute:item.end.getMinutes()}} 
+						database.ref('user/' + $scope.name + '/schedule/thursday/').push().set({
+
+                            start: item.start.getTime(),
+                            end: item.end.getTime()
 							});
-						counter2 = counter2 + 1;
 					});
 
-					var counter1 = 0;
 					angular.forEach($scope.friAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/friday/TimeFrame/' + counter1).set({
-							
-								start: { Time: {hour:item.start.getHours() ,
-								minute:item.start.getMinutes()}},
-								end: { Time: {hour:item.end.getHours() ,
-								minute:item.end.getMinutes()}} 
+						database.ref('user/' + $scope.name + '/schedule/friday/').push().set({
+
+                            start: item.start.getTime(),
+                            end: item.end.getTime()
 							});
-						counter1 = counter1 + 1;
 					});
-					var counter = 0;
 					angular.forEach($scope.satAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/saturday/TimeFrame/' + counter).set({
-							
-								start: { Time: {hour:item.start.getHours() ,
-								minute:item.start.getMinutes()}},
-								end: { Time: {hour:item.end.getHours() ,
-								minute:item.end.getMinutes()}} 
+						database.ref('user/' + $scope.name + '/schedule/saturday/').push().set({
+
+                            start: item.start.getTime(),
+                            end: item.end.getTime()
 							});
-						counter = counter + 1;
 					});
 
 			        alert("Successfully Added");
