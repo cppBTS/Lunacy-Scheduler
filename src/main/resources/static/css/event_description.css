@@ -1,3 +1,9 @@
+#title{
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
 /* For users Table */
 .row{
   margin-top:40px;
