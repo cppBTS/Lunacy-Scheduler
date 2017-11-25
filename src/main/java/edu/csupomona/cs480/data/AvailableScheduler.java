@@ -17,9 +17,9 @@ public class AvailableScheduler {
 		this.users = users;
 	}
 	
-	public DateTime bestAvailableTime() {
-		List<DateTime> availableTimes = findAvailableTimes();
-		DateTime best = availableTimes.get(0);
+	public DatewithTime bestAvailableTime() {
+		List<DatewithTime> availableTimes = findAvailableTimes();
+		DatewithTime best = availableTimes.get(0);
 		for(int i = 0; i < availableTimes.size(); i++) {
 			if(best.compareTo(availableTimes.get(i)) == -1) {
 				best = availableTimes.get(i);
@@ -28,8 +28,8 @@ public class AvailableScheduler {
 		return best;
 	}
 	
-	public List<DateTime> findAvailableTimes() {
-		List<DateTime> available = new ArrayList<>();
+	public List<DatewithTime> findAvailableTimes() {
+		List<DatewithTime> available = new ArrayList<>();
 		
 		List<Map<Date, List<TimeFrame>>> availableTimes = new ArrayList<>();
 		
@@ -51,7 +51,7 @@ public class AvailableScheduler {
 				 first = getAvailableTimes(first, second);	 
 			}
 			for(int j = 0; j < first.size(); j++) {
-				available.add(new DateTime(current, first.get(j)));
+				available.add(new DatewithTime(current, first.get(j)));
 			}
 			current = current.nextDate();
 		}

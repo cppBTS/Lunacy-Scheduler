@@ -11,7 +11,6 @@ public class Schedule1 {
 	private TimeFrame[] saturday;
 	private TimeFrame[] sunday;
 
-
 	public Schedule1(TimeFrame[] monday, TimeFrame[] tuesday,
 			TimeFrame[] wednesday, TimeFrame[] thursday,
 			TimeFrame[] friday, TimeFrame[] saturday,
@@ -43,7 +42,7 @@ public class Schedule1 {
 			throw new IOException("Not correct input");
 		}
 	}
-	
+
 	public TimeFrame[] getSchedule(int day) {
 		if(day == 0) {
 			return sunday;

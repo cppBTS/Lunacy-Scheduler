@@ -1,26 +1,22 @@
 package edu.csupomona.cs480.data;
 
-import org.joda.time.LocalTime;
-
-public class TimeFrame{
-	private Time start;
-	private Time end;
-	public TimeFrame(){}
-
-	public TimeFrame(Time startTime, Time endTime) {
+public class TimeFrame1 {
+	private Time1 start;
+	private Time1 end;
+	public TimeFrame1(Time1 startTime, Time1 endTime) {
 		this.start = startTime;
 		this.end = endTime;
 	}
-	public Time getStartTime() {
+	public Time1 getStartTime() {
 		return start;
 	}
-	public void setStartTime(Time startTime) {
+	public void setStartTime(Time1 startTime) {
 		this.start = startTime;
 	}
-	public Time getEndTime() {
+	public Time1 getEndTime() {
 		return end;
 	}
-	public void setEndTime(Time endTime) {
+	public void setEndTime(Time1 endTime) {
 		this.end = endTime;
 	}
 	@Override
@@ -45,7 +41,7 @@ public class TimeFrame{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TimeFrame other = (TimeFrame) obj;
+		TimeFrame1 other = (TimeFrame1) obj;
 		if (end == null) {
 			if (other.end != null)
 				return false;
@@ -58,14 +54,14 @@ public class TimeFrame{
 			return false;
 		return true;
 	}
-	public boolean contains(TimeFrame second) {
+	public boolean contains(TimeFrame1 second) {
 		// TODO Auto-generated method stub
 		if(second.getStartTime().compareTo(start) >= 0 && second.getStartTime().compareTo(end) <= 0) {
 			return true;
 		}
 		return false;
 	}
-	public int compareTo(TimeFrame o) {
+	public int compareTo(TimeFrame1 o) {
 		if(this.total() > o.total()) {
 			return 1;
 		} else if(this.total() < o.total()) {
@@ -78,25 +74,7 @@ public class TimeFrame{
 		int total = (end.getHour() - start.getHour())*60 + (end.getMinute() - start.getMinute());
 		return total;
 	}
-
-	public Time getStart() {
-		return start;
-	}
-
-	public void setStart(Time start) {
-		this.start = start;
-	}
-
-	public Time getEnd() {
-		return end;
-	}
-
-	public void setEnd(Time end) {
-		this.end = end;
-	}
-
-
-	//	public Time getHours() {
+//	public Time getHours() {
 //		// TODO Auto-generated method stub
 //		int hour = end.getHour() - start.getHour();
 //		LocalTime test = new LocalTime(hour, end.getMinute());

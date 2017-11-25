@@ -1,73 +1,61 @@
 package edu.csupomona.cs480.data;
 
+import org.joda.time.LocalTime;
+
+
 public class Time implements Comparable<Time>{
-	private int hour;
-	private int minute;
-	public Time(int hour, int minute) {
-		this.hour = hour;
-		this.minute = minute;
+	private long time;
+	public Time() {}
+	public Time(long time) {
+		this.time = time;
 	}
 	public int getHour() {
-		return hour;
-	}
-	public void setHour(int hour) {
-		this.hour = hour;
+		LocalTime a = new LocalTime(time);
+		return a.getHourOfDay();
 	}
 	public int getMinute() {
-		return minute;
+		LocalTime a = new LocalTime(time);
+		return a.getMinuteOfHour();
 	}
-	public void setMinute(int minute) {
-		this.minute = minute;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Time time1 = (Time) o;
+
+		return time == time1.time;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + hour;
-		result = prime * result + minute;
-		return result;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Time other = (Time) obj;
-		if (hour != other.hour)
-			return false;
-		if (minute != other.minute)
-			return false;
-		return true;
+		return (int) (time ^ (time >>> 32));
 	}
 	@Override
 	public int compareTo(Time o) {
 		// TODO Auto-generated method stub
-		if(hour < o.hour){
-			return -1;
-		} else if(hour > o.hour) {
+		if(this.time > o.time) {
 			return 1;
-		} else if(minute < o.minute){
+		} else if(this.time < o.time) {
 			return -1;
-		} else if(minute > o.hour){
-			return 1;
+		} else {
+			return 0;
 		}
-		return 0;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Time [hour=" + hour + ", minute=" + minute + "]";
+		return "Time [hour=" + getHour() + ", minute=" + getMinute() + "]";
 	}
-	
+
+	public long getTime() {
+		return time;
+	}
+
+	public void setTime(long time) {
+		this.time = time;
+	}
 }

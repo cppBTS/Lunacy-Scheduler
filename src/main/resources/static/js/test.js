@@ -25,8 +25,8 @@ signUpMod.controller('SignIn', function ($scope) {
 });
 
 	cs480App.controller('ReadDataCtrl', function ($scope, $firebaseObject,$firebaseArray, $http) {	
-			$scope.clear = function() {
-				var schedules = [];
+//			$scope.clear = function() {
+//				var schedules = [];
 //				var userRef = database.ref('user/justin/schedule');
 //				var obj = $firebaseArray(userRef);
 //
@@ -37,46 +37,28 @@ signUpMod.controller('SignIn', function ($scope) {
 //			     });
 			
 //	
-			userRef = database.ref('user/ubaldo/schedule');
-			var obj = new $firebaseObject(userRef);
-			obj.$loaded().then(function() {
-			       // To iterate the key/value pairs of the object, use angular.forEach()
-//			      schedules.push(obj);
-					$http.post("test",obj)
-				  	.success(function(data){
-				  		alert(data);
-				  	});
-			     });
-	
-//		  $scope.clear = function() {
-//					$http.post("/bestTime",$scope.schedules)
-//				  	.success(function(data){
-//				  		alert(data);
-//				  	});
-//		  };
+// 			userRef = database.ref('user/ubaldo/schedule');
+// 			var obj = new $firebaseObject(userRef);
+// 			obj.$loaded().then(function() {
+// 			        To iterate the key/value pairs of the object, use angular.forEach()
+// 			      schedules.push(obj);
+// 					$http.post("test",obj)
+// 				  	.success(function(data){
+// 				  		alert(data);
+// 				  	});
+// 			     });
+
+		  $scope.clear = function() {
+					$http.get("/set");
+		  };
 //			$scope.clear = function() {
 //				$http.post("/test",$scope.schedule)
 //			  	.success(function(data){
 //			  		alert(data);
 //			  	});
-			};
+//			};
 	});
-//
-//cs480App.controller('Algorithm', function ($scope, $firebaseObject,$firebaseArray, $http) {
-//	$scope.getBest = function() {
-//		$http.post(bestTime, [])
-//	  	.success(function(data){
-//	  		$scope.loadUsers();
-//	  	});
-//	}
-//	$scope.getBestTimes = function() {
-//		$http.post(bestTimes, [])
-//	  	.success(function(data){
-//	  		$scope.loadUsers();
-//	  	});
-//	}
-//
-//});
+
 
 signUpMod.controller('SignUpUser', function ($scope) {
 	$scope.signup = function() {
@@ -143,61 +125,65 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 		  $scope.submit = function() {
 			  database.ref('user/' + $scope.name).set({
 				  	user: $scope.name,
-				  	group: $scope.group,
-				    start: $scope.dt.getTime(),
-				    end: $scope.dt.end.getTime()
+				  	group: $scope.group
 				  });
+			  var pushkey = database.ref('user/'+$scope.name+'/available/').push().key;
+			  database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey).set ( {
+
+                  start: $scope.dt.getTime(),
+                  end: $scope.dt.end.getTime()
+			  });
 					angular.forEach($scope.sunAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/sunday/').push().set({
+						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/sunday/').push().set({
 								
-											start: item.start.getTime(),
-											end: item.end.getTime()
+											start: {time: item.start.getTime()},
+											end: {time: item.end.getTime()}
 									
 							});
 					});
 					angular.forEach($scope.monAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/monday/').push().set({
-                            start: item.start.getTime(),
-                            end: item.end.getTime()
+						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/monday/').push().set({
+                            start: {time: item.start.getTime()},
+                            end: {time: item.end.getTime()}
 							});
 					});
 
 					angular.forEach($scope.tuesAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/tuesday/').push().set({
+						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/tuesday/').push().set({
 
-                            start: item.start.getTime(),
-                            end: item.end.getTime()
+                            start: {time: item.start.getTime()},
+                            end: {time: item.end.getTime()}
 							});
 					});
 
 					angular.forEach($scope.wedAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/wednesday/').push().set({
+						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/wednesday/').push().set({
 
-                            start: item.start.getTime(),
-                            end: item.end.getTime()
+                            start: {time: item.start.getTime()},
+                            end: {time: item.end.getTime()}
 							});
 					});
 
 					angular.forEach($scope.thursAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/thursday/').push().set({
+						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/thursday/').push().set({
 
-                            start: item.start.getTime(),
-                            end: item.end.getTime()
+                            start: {time: item.start.getTime()},
+                            end: {time: item.end.getTime()}
 							});
 					});
 
 					angular.forEach($scope.friAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/friday/').push().set({
+						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/friday/').push().set({
 
-                            start: item.start.getTime(),
-                            end: item.end.getTime()
+                            start: {time: item.start.getTime()},
+                            end: {time: item.end.getTime()}
 							});
 					});
 					angular.forEach($scope.satAvails, function(item) {
-						database.ref('user/' + $scope.name + '/schedule/saturday/').push().set({
+						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/saturday/').push().set({
 
-                            start: item.start.getTime(),
-                            end: item.end.getTime()
+                            start: {time: item.start.getTime()},
+                            end: {time: item.end.getTime()}
 							});
 					});
 

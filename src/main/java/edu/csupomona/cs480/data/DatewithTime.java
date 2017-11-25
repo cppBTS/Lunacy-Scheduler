@@ -1,27 +1,37 @@
 package edu.csupomona.cs480.data;
 
-public class DayTime {
-	private int date;
+import org.joda.time.LocalDate;
+
+public class DatewithTime {
+	private Date date;
 	private TimeFrame time;
 	/**
 	 * @param date
 	 * @param time
 	 */
-	public DayTime(int date, TimeFrame time) {
+	public DatewithTime(Date date, TimeFrame time) {
 		this.date = date;
 		this.time = time;
 	}
-
+	public DatewithTime(LocalDate date, TimeFrame time) {
+		this.time = time;
+		this.date = new Date(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth());
+	}
+	
+//	public Time findHours() {
+//		Time hours = time.getHours();
+//		return hours;
+//	}
 	/**
 	 * @return the date
 	 */
-	public int getDate() {
+	public Date getDate() {
 		return date;
 	}
 	/**
 	 * @param date the date to set
 	 */
-	public void setDate(int date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	/**
@@ -43,7 +53,7 @@ public class DayTime {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + date;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		return result;
 	}
@@ -58,8 +68,11 @@ public class DayTime {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DayTime other = (DayTime) obj;
-		if (date != other.date)
+		DatewithTime other = (DatewithTime) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
 			return false;
 		if (time == null) {
 			if (other.time != null)
@@ -73,14 +86,14 @@ public class DayTime {
 	 */
 	@Override
 	public String toString() {
-		return "DayTime [date=" + date + ", time=" + time + "]";
+		return "DatewithTime [date=" + date + ", time=" + time + "]";
 	}
 
-	public int compareTo(DayTime dateTime) {
+	public int compareTo(DatewithTime datewithTime) {
 		// TODO Auto-generated method stub
-		if(time.compareTo(dateTime.time) == 1) {
+		if(time.compareTo(datewithTime.time) == 1) {
 			return 1;
-		} else if(time.compareTo(dateTime.time) == -1) {
+		} else if(time.compareTo(datewithTime.time) == -1) {
 			return -1;
 		} else {
 			return 0;
