@@ -9,7 +9,7 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-cs480App.controller('Datepicker', function ($scope, $firebaseObject, $firebaseArray, $log) {
+cs480App.controller('Datepicker', function ($scope, $firebaseObject, $firebaseArray, $log, $window, $http) {
 
   var options = [];
   var reference = database.ref("user");
@@ -71,13 +71,47 @@ cs480App.controller('Datepicker', function ($scope, $firebaseObject, $firebaseAr
   };
 
 	$scope.submit = function() {
-
 		var targets = [];
 		$.each($(".selectpicker option:selected"), function(){
 		targets.push($(this).val());
 		});
 
-		alert("You have selected the targets - " + targets.join(", "))
+        var pass = {'start': $scope.dt.getTime(),
+            'end': $scope.dt.end.getTime(),
+            'users': targets};
+        var dateTime;
+
+            var response = $http.post("/set", pass);
+            response.success(function(data){
+                dateTime = data;
+
+                var ref = database.ref("Calendar/" + $scope.title);
+                ref.set({
+                    'title': $scope.title,
+                    'description': $scope.description,
+                    'url': "/event_description.html?id=" + $scope.title,
+                    'start': dateTime.start,
+                    'end': dateTime.end
+
+                });
+
+                angular.forEach(targets, function(tar) {
+                    database.ref('user/' + tar).once('value').then(function(snapshot) {
+                        var first = snapshot.val().first || 'Anonymous';
+                        var last = snapshot.val().last || 'Anonymous';
+                        var email = snapshot.val().email || 'Anonymous';
+                        var temp = {'first' : first, 'last': last, 'email': email};
+                        database.ref("Calendar/" + $scope.title + "/users/").push().set(temp);
+                        // ...
+                    });
+                });
+                $window.location.href = '/calendar.html';
+            });
+            response.error(function(data, status, headers, config) {
+                console.log( "Exception details: " + JSON.stringify({data: data}));
+            });
+
+
 	};
 
 });

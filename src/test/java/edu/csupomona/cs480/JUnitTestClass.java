@@ -2,13 +2,8 @@ package edu.csupomona.cs480;
 
 import static org.junit.Assert.*;
 
+import edu.csupomona.cs480.data.*;
 import org.junit.Test;
-
-import edu.csupomona.cs480.data.Date;
-import edu.csupomona.cs480.data.DayType;
-import edu.csupomona.cs480.data.Schedule;
-import edu.csupomona.cs480.data.Time;
-import edu.csupomona.cs480.data.TimeFrame;
 
 // Johnny Lu 
 // Assignment 6
@@ -17,10 +12,10 @@ public class JUnitTestClass {
 
 	@Test
 	public void test() {
-		Time noon = new Time(12, 00);
-		Time midnight = new Time(24, 00);
-		TimeFrame noonToMidnight = new TimeFrame(noon, midnight);
-		TimeFrame twelveHours = new TimeFrame(new Time(12, 00), new Time(24, 00));
+		Time1 noon = new Time1(12, 00);
+		Time1 midnight = new Time1(24, 00);
+		TimeFrame1 noonToMidnight = new TimeFrame1(noon, midnight);
+		TimeFrame1 twelveHours = new TimeFrame1(new Time1(12, 00), new Time1(24, 00));
 		assertEquals(noonToMidnight, twelveHours);
 	}
 }

@@ -6,4 +6,6 @@ target
 src/.DS_Store
 src/main/.DS_Store
 src/main/resources/.DS_Store
+.idea
+cs480.iml
 

@@ -69,7 +69,7 @@
            </div>
            <div class="form-group">
              <label for="eventDescription">Description</label>
-             <textarea class="form-control" rows="5" id="description"></textarea>
+             <textarea class="form-control" rows="5" id="description" ng-model="description"></textarea>
            </div>
        </form>
 
@@ -108,7 +108,7 @@
     </div>
 
     <div class="subContainer" align="center">
-        <button type="button" class="btn btn-success" ng-click="submit()" onclick="location.href='calendar.html'">Find best time!</button>
+        <button type="button" class="btn btn-success" ng-click="submit()">Find best time!</button>
     </div>
 
    </body>

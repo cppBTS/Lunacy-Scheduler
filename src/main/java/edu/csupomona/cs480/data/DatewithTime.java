@@ -1,21 +1,27 @@
 package edu.csupomona.cs480.data;
 
-public class DateTime {
+import org.joda.time.LocalDate;
+
+public class DatewithTime {
 	private Date date;
 	private TimeFrame time;
 	/**
 	 * @param date
 	 * @param time
 	 */
-	public DateTime(Date date, TimeFrame time) {
+	public DatewithTime(Date date, TimeFrame time) {
 		this.date = date;
 		this.time = time;
 	}
-	
-	public Time findHours() {
-		Time hours = time.getHours();
-		return hours;
+	public DatewithTime(LocalDate date, TimeFrame time) {
+		this.time = time;
+		this.date = new Date(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth());
 	}
+	
+//	public Time findHours() {
+//		Time hours = time.getHours();
+//		return hours;
+//	}
 	/**
 	 * @return the date
 	 */
@@ -62,7 +68,7 @@ public class DateTime {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DateTime other = (DateTime) obj;
+		DatewithTime other = (DatewithTime) obj;
 		if (date == null) {
 			if (other.date != null)
 				return false;
@@ -80,17 +86,18 @@ public class DateTime {
 	 */
 	@Override
 	public String toString() {
-		return "DateTime [date=" + date + ", time=" + time + "]";
+		return "DatewithTime [date=" + date + ", time=" + time + "]";
 	}
 
-	public int compareTo(DateTime dateTime) {
+	public int compareTo(DatewithTime datewithTime) {
 		// TODO Auto-generated method stub
-		if(time.getHours().compareTo(dateTime.time.getHours()) == 1) {
+		if(time.compareTo(datewithTime.time) == 1) {
 			return 1;
-		} else if(time.getHours().compareTo(dateTime.time.getHours()) == -1) {
+		} else if(time.compareTo(datewithTime.time) == -1) {
 			return -1;
+		} else {
+			return 0;
 		}
-		return 0;
 	}
 	
 }

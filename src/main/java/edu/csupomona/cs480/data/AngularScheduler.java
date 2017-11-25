@@ -4,16 +4,8 @@ import java.util.*;
 
 public class AngularScheduler {
 	private Schedule1[] schedules;
-	/**
-	 * @param start
-	 * @param end
-	 * @param users
-	 */
 	public AngularScheduler(Schedule1[] schedules) {
 		this.schedules = schedules;
-	}
-	public String Test() {
-		return "HI";
 	}
 	public String bestAvailableTime() {
 		ArrayList<DayTime> availableTimes = findAvailableTimes();
@@ -94,9 +86,6 @@ public class AngularScheduler {
 	public Schedule1[] getSchedules() {
 		return schedules;
 	}
-	/**
-	 * @param users the users to set
-	 */
 	public void setSchedules(Schedule1[] schedules) {
 		this.schedules = schedules;
 	}

@@ -21,8 +21,8 @@ public class Scheduler {
 		this.users = users;
 	}
 	
-	public List<DateTime> findAvailableSchedules() throws IOException, Exception {
-		List<DateTime> availableTimes = new ArrayList<>();
+	public List<DatewithTime> findAvailableSchedules() throws IOException, Exception {
+		List<DatewithTime> availableTimes = new ArrayList<>();
 		List<Map<Date, List<TimeFrame>>> unavailTimes = new ArrayList<>();
 		for(int e = 0; e < users.size(); e++) {
 			try {
@@ -39,7 +39,7 @@ public class Scheduler {
 			 List<TimeFrame> availTimes = getAvailableTimes(first, second);
 			 if(users.size() == 2) {
 				 for(int j = 0; j < availTimes.size(); j++) {
-					 availableTimes.add(new DateTime(current, availTimes.get(j)));
+					 availableTimes.add(new DatewithTime(current, availTimes.get(j)));
 				 }
 				 
 			 }

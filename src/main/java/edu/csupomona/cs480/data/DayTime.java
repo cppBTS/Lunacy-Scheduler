@@ -11,11 +11,7 @@ public class DayTime {
 		this.date = date;
 		this.time = time;
 	}
-	
-	public Time findHours() {
-		Time hours = time.getHours();
-		return hours;
-	}
+
 	/**
 	 * @return the date
 	 */
@@ -82,12 +78,13 @@ public class DayTime {
 
 	public int compareTo(DayTime dateTime) {
 		// TODO Auto-generated method stub
-		if(time.getHours().compareTo(dateTime.time.getHours()) == 1) {
+		if(time.compareTo(dateTime.time) == 1) {
 			return 1;
-		} else if(time.getHours().compareTo(dateTime.time.getHours()) == -1) {
+		} else if(time.compareTo(dateTime.time) == -1) {
 			return -1;
+		} else {
+			return 0;
 		}
-		return 0;
 	}
 	
 }

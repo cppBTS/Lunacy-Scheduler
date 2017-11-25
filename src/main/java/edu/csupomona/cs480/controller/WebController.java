@@ -5,18 +5,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadFactory;
 
 import javax.websocket.Session;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.ThreadManager;
 import com.google.firebase.database.*;
+import edu.csupomona.cs480.data.Schedules.DayFrame;
 import org.apache.commons.io.IOUtils;
+
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -91,9 +93,21 @@ public class WebController {
 		return user;
 	}
 
-	@RequestMapping(value = "/set", method = RequestMethod.GET)
-	void addNewData() {
 
+	@RequestMapping(value = "/test1", method = RequestMethod.GET)
+	public void adds(@RequestBody Long test) {
+		System.out.println(test);
+	}
+	private int counter = 0;
+	@RequestMapping(value = "/set", method = RequestMethod.POST)
+	public @ResponseBody ConvertDateTime addNewData(@RequestBody ExtractData obj) {
+
+		MapAvailableScheduler scheduler = new MapAvailableScheduler();
+		scheduler.setStart(obj.getStart());
+		scheduler.setEnd(obj.getEnd());
+
+
+		List<MapAvailable> availables = new ArrayList<>();
 		FileInputStream serviceAccount;
 		try {
 			serviceAccount = new FileInputStream("lunacy-scheduler-firebase-adminsdk-l721m-606ad2f275.json");
@@ -111,40 +125,51 @@ public class WebController {
 
 				FirebaseApp.initializeApp(options);
 				final FirebaseDatabase database = FirebaseDatabase.getInstance();
-				DatabaseReference ref = database.getReference("users");
-
-				ref.setValueAsync("HI");
-				Map<String, String> users = new HashMap<>();
-				users.put("alanisawesome", "June 23, 1912");
-				users.put("gracehop", "December 9, 1906");
-
-				ref.setValueAsync(users);
-				ref.addListenerForSingleValueEvent( new ValueEventListener() {
+				String[] users = obj.getUsers();
+				ThreadManager manager = new ThreadManager() {
 					@Override
-					public void onDataChange(DataSnapshot dataSnapshot) {
-						// ...
-						System.out.print(dataSnapshot.getChildrenCount());
+					protected ExecutorService getExecutor(FirebaseApp firebaseApp) {
+						return null;
 					}
 
 					@Override
-					public void onCancelled(DatabaseError databaseError) {
-						// ...
-					}
-				});
+					protected void releaseExecutor(FirebaseApp firebaseApp, ExecutorService executorService) {
 
-				ref.addValueEventListener(new ValueEventListener() {
-					@Override
-					public void onDataChange(DataSnapshot dataSnapshot) {
-						System.out.println("HELLO");
 					}
 
 					@Override
-					public void onCancelled(DatabaseError databaseError) {
-						System.out.println("The read failed: " + databaseError.getCode());
+					protected ThreadFactory getThreadFactory() {
+						return null;
 					}
-				});
+				};
+				for(int i = 0; i < users.length; i++) {
+					Thread.sleep(4000);
+					DatabaseReference ref = database.getReference("user/" + users[i] + "/available/");
+
+					ref.addListenerForSingleValueEvent(new ValueEventListener() {
+						@Override
+						public void onDataChange(DataSnapshot dataSnapshot) {
+							MapAvailable sche = dataSnapshot.getValue(MapAvailable.class);
+							availables.add(sche);
+							System.out.println("Success");
+						}
+
+						@Override
+						public void onCancelled(DatabaseError databaseError) {
+							System.out.println("The read failed: " + databaseError.getCode());
+						}
+					});
+				}
+				Thread.sleep(4000);
+				scheduler.setSchedules(availables);
+				System.out.println("Size : "+ scheduler.getSchedules().size());
+				ConvertDateTime time = new ConvertDateTime(scheduler.bestAvailableTime());
+				return time;
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
@@ -152,6 +177,7 @@ public class WebController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	/**
