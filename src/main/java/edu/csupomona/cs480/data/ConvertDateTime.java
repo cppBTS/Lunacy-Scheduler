@@ -41,4 +41,12 @@ public class ConvertDateTime {
 	public void setEnd(String end) {
 		this.end = end;
 	}
+
+	@Override
+	public String toString() {
+		return "ConvertDateTime{" +
+				"start='" + start + '\'' +
+				", end='" + end + '\'' +
+				'}';
+	}
 }

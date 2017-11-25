@@ -1,5 +1,9 @@
 package edu.csupomona.cs480;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.FirebaseDatabase;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -8,6 +12,10 @@ import org.springframework.context.annotation.Configuration;
 
 
 import edu.csupomona.cs480.data.provider.*;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 @Configuration
 @EnableAutoConfiguration
@@ -24,6 +32,33 @@ public class App {
     public UserManager userManager() {
         UserManager userManager = new FSUserManager();
         return userManager;
+    }
+
+    @Bean
+    public FirebaseDatabase firebaseDatabase() {
+        FileInputStream serviceAccount;
+        try {
+            serviceAccount = new FileInputStream("lunacy-scheduler-firebase-adminsdk-l721m-606ad2f275.json");
+
+            FirebaseOptions options;
+
+                options = new FirebaseOptions.Builder()
+                        .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                        .setDatabaseUrl("https://lunacy-scheduler.firebaseio.com")
+                        .setDatabaseAuthVariableOverride(null)
+                        .build();
+
+
+                FirebaseApp.initializeApp(options);
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                return database;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

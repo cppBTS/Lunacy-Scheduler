@@ -1,22 +1,10 @@
 package edu.csupomona.cs480.controller;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadFactory;
-
-import javax.websocket.Session;
-
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.ThreadManager;
 import com.google.firebase.database.*;
-import edu.csupomona.cs480.data.Schedules.DayFrame;
 import org.apache.commons.io.IOUtils;
 
 import org.joda.time.DateTime;
@@ -61,6 +49,9 @@ public class WebController {
 	 */
 	@Autowired
 	private UserManager userManager;
+
+	@Autowired
+	private FirebaseDatabase firebaseDatabase;
 
 	/**
 	 * This is a simple example of how the HTTP API works.
@@ -108,76 +99,38 @@ public class WebController {
 
 
 		List<MapAvailable> availables = new ArrayList<>();
-		FileInputStream serviceAccount;
-		try {
-			serviceAccount = new FileInputStream("lunacy-scheduler-firebase-adminsdk-l721m-606ad2f275.json");
+		String[] users = obj.getUsers();
+		int[] counter = new int[1];
+		counter[0] = 0;
+		for(int i = 0; i < users.length; i++) {
+			DatabaseReference ref = firebaseDatabase.getReference("user/" + users[i] + "/available/");
 
-			FirebaseOptions options;
-
-			try {
-				options = new FirebaseOptions.Builder()
-						.setCredentials(GoogleCredentials.fromStream(serviceAccount))
-						.setDatabaseUrl("https://lunacy-scheduler.firebaseio.com")
-						.setDatabaseAuthVariableOverride(null)
-						.build();
-
-
-
-				FirebaseApp.initializeApp(options);
-				final FirebaseDatabase database = FirebaseDatabase.getInstance();
-				String[] users = obj.getUsers();
-				ThreadManager manager = new ThreadManager() {
-					@Override
-					protected ExecutorService getExecutor(FirebaseApp firebaseApp) {
-						return null;
-					}
-
-					@Override
-					protected void releaseExecutor(FirebaseApp firebaseApp, ExecutorService executorService) {
-
-					}
-
-					@Override
-					protected ThreadFactory getThreadFactory() {
-						return null;
-					}
-				};
-				for(int i = 0; i < users.length; i++) {
-					Thread.sleep(4000);
-					DatabaseReference ref = database.getReference("user/" + users[i] + "/available/");
-
-					ref.addListenerForSingleValueEvent(new ValueEventListener() {
-						@Override
-						public void onDataChange(DataSnapshot dataSnapshot) {
-							MapAvailable sche = dataSnapshot.getValue(MapAvailable.class);
-							availables.add(sche);
-							System.out.println("Success");
-						}
-
-						@Override
-						public void onCancelled(DatabaseError databaseError) {
-							System.out.println("The read failed: " + databaseError.getCode());
-						}
-					});
+			ref.addListenerForSingleValueEvent(new ValueEventListener() {
+				@Override
+				public void onDataChange(DataSnapshot dataSnapshot) {
+					MapAvailable sche = dataSnapshot.getValue(MapAvailable.class);
+					availables.add(sche);
+					System.out.println("Success");
+					counter[0]++;
 				}
-				Thread.sleep(4000);
-				scheduler.setSchedules(availables);
-				System.out.println("Size : "+ scheduler.getSchedules().size());
-				ConvertDateTime time = new ConvertDateTime(scheduler.bestAvailableTime());
-				return time;
 
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				@Override
+				public void onCancelled(DatabaseError databaseError) {
+					System.out.println("The read failed: " + databaseError.getCode());
+				}
+			});
 		}
-		return null;
+		while(counter[0] != users.length - 1) {
+
+		}
+
+		scheduler.setSchedules(availables);
+		System.out.println("Size : "+ scheduler.getSchedules().size());
+		ConvertDateTime time = new ConvertDateTime(scheduler.bestAvailableTime());
+		System.out.print(time);
+		return time;
+
+
 	}
 
 	/**
@@ -244,23 +197,6 @@ public class WebController {
 		return modelAndView;
 	}
 
-	/*@RequestMapping(value = "/bestTime", method = RequestMethod.POST)
-	@ResponseBody String getBestAvailable(
-			@RequestBody AngularScheduler scheduler) {
-		System.out.println(scheduler.Test());
-		return scheduler.Test();
-	}
-	@RequestMapping(value = "/test", method = RequestMethod.POST)
-	@ResponseBody String test(
-			@RequestBody Schedule1 schedules) {
-		return "worked";
-	}*/
-
-//	@RequestMapping(value = "/bestTimes", method = RequestMethod.GET)
-//	@ResponseBody List<String> getBestAvailables(
-//			@RequestBody GroupAvailability schedules) {
-//		return schedulerManager.getBestAvailables(schedules);
-//	}
 	//Justin's API Call
 	@RequestMapping(value = "/cs480/jhan", method = RequestMethod.GET)
 	String Test() {

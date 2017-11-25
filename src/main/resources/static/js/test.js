@@ -77,7 +77,7 @@ signUpMod.controller('SignUpUser', function ($scope) {
 	}
 });
 
-cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebaseArray, $http) {
+cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebaseArray, $http, $window) {
 
 
   //DatePicker
@@ -188,7 +188,7 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 							});
 					});
 
-			        alert("Successfully Added");
+              		$window.location.href = '/CreateEvent2.html';
 		  };
 
 			$scope.sunStart = {

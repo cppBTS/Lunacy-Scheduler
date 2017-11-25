@@ -71,6 +71,7 @@ cs480App.controller('Datepicker', function ($scope, $firebaseObject, $firebaseAr
   };
 
 	$scope.submit = function() {
+	    var stringTemp = $scope.title.replace(/(?!\w|\s)./g, '');
 		var targets = [];
 		$.each($(".selectpicker option:selected"), function(){
 		targets.push($(this).val());
@@ -79,17 +80,16 @@ cs480App.controller('Datepicker', function ($scope, $firebaseObject, $firebaseAr
         var pass = {'start': $scope.dt.getTime(),
             'end': $scope.dt.end.getTime(),
             'users': targets};
-        var dateTime;
-
+            var dateTime;
             var response = $http.post("/set", pass);
             response.success(function(data){
+                console.log(stringTemp);
                 dateTime = data;
-
-                var ref = database.ref("Calendar/" + $scope.title);
+                var ref = database.ref("Calendar/" + stringTemp);
                 ref.set({
                     'title': $scope.title,
                     'description': $scope.description,
-                    'url': "/event_description.html?id=" + $scope.title,
+                    'url': "/event_description.html?id=" + stringTemp,
                     'start': dateTime.start,
                     'end': dateTime.end
 
@@ -101,7 +101,7 @@ cs480App.controller('Datepicker', function ($scope, $firebaseObject, $firebaseAr
                         var last = snapshot.val().last || 'Anonymous';
                         var email = snapshot.val().email || 'Anonymous';
                         var temp = {'first' : first, 'last': last, 'email': email};
-                        database.ref("Calendar/" + $scope.title + "/users/").push().set(temp);
+                        database.ref("Calendar/" + stringTemp + "/users/").push().set(temp);
                         // ...
                     });
                 });
