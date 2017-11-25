@@ -123,18 +123,19 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 	//Timepicker
 
 		  $scope.submit = function() {
-			  database.ref('user/' + $scope.name).set({
-				  	user: $scope.name,
-				  	group: $scope.group
+			  database.ref('user/' + $scope.first.name).set({
+				  	first: $scope.first.name,
+				  	last: $scope.last.name,
+				  	email: $scope.emailname
 				  });
-			  var pushkey = database.ref('user/'+$scope.name+'/available/').push().key;
-			  database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey).set ( {
+			  var pushkey = database.ref('user/'+$scope.first.name+'/available/').push().key;
+			  database.ref('user/'+$scope.first.name+'/available/availableTimes/'+ pushkey).set ( {
 
                   start: $scope.dt.getTime(),
                   end: $scope.dt.end.getTime()
 			  });
 					angular.forEach($scope.sunAvails, function(item) {
-						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/sunday/').push().set({
+						database.ref('user/'+$scope.first.name+'/available/availableTimes/'+ pushkey +'/sunday/').push().set({
 								
 											start: {time: item.start.getTime()},
 											end: {time: item.end.getTime()}
@@ -142,14 +143,14 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 							});
 					});
 					angular.forEach($scope.monAvails, function(item) {
-						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/monday/').push().set({
+						database.ref('user/'+$scope.first.name+'/available/availableTimes/'+ pushkey +'/monday/').push().set({
                             start: {time: item.start.getTime()},
                             end: {time: item.end.getTime()}
 							});
 					});
 
 					angular.forEach($scope.tuesAvails, function(item) {
-						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/tuesday/').push().set({
+						database.ref('user/'+$scope.first.name+'/available/availableTimes/'+ pushkey +'/tuesday/').push().set({
 
                             start: {time: item.start.getTime()},
                             end: {time: item.end.getTime()}
@@ -157,7 +158,7 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 					});
 
 					angular.forEach($scope.wedAvails, function(item) {
-						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/wednesday/').push().set({
+						database.ref('user/'+$scope.first.name+'/available/availableTimes/'+ pushkey +'/wednesday/').push().set({
 
                             start: {time: item.start.getTime()},
                             end: {time: item.end.getTime()}
@@ -165,7 +166,7 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 					});
 
 					angular.forEach($scope.thursAvails, function(item) {
-						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/thursday/').push().set({
+						database.ref('user/'+$scope.first.name+'/available/availableTimes/'+ pushkey +'/thursday/').push().set({
 
                             start: {time: item.start.getTime()},
                             end: {time: item.end.getTime()}
@@ -173,14 +174,14 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 					});
 
 					angular.forEach($scope.friAvails, function(item) {
-						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/friday/').push().set({
+						database.ref('user/'+$scope.first.name+'/available/availableTimes/'+ pushkey +'/friday/').push().set({
 
                             start: {time: item.start.getTime()},
                             end: {time: item.end.getTime()}
 							});
 					});
 					angular.forEach($scope.satAvails, function(item) {
-						database.ref('user/'+$scope.name+'/available/availableTimes/'+ pushkey +'/saturday/').push().set({
+						database.ref('user/'+$scope.first.name+'/available/availableTimes/'+ pushkey +'/saturday/').push().set({
 
                             start: {time: item.start.getTime()},
                             end: {time: item.end.getTime()}

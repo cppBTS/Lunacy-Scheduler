@@ -96,7 +96,14 @@ cs480App.controller('Datepicker', function ($scope, $firebaseObject, $firebaseAr
                 });
 
                 angular.forEach(targets, function(tar) {
-                    database.ref("Calendar/" + $scope.title + "/users/").push().set(tar);
+                    database.ref('user/' + tar).once('value').then(function(snapshot) {
+                        var first = snapshot.val().first || 'Anonymous';
+                        var last = snapshot.val().last || 'Anonymous';
+                        var email = snapshot.val().email || 'Anonymous';
+                        var temp = {'first' : first, 'last': last, 'email': email};
+                        database.ref("Calendar/" + $scope.title + "/users/").push().set(temp);
+                        // ...
+                    });
                 });
                 $window.location.href = '/calendar.html';
             });

@@ -87,7 +87,9 @@
 						<tbody>
 							<tr ng-repeat="each in users">
 								<td>{{$index + 1}}</td>
-								<td>{{ each }}</td>
+								<td>{{ each.first }}</td>
+                                <td>{{ each.last }}</td>
+                                <td>{{ each.email }}</td>
 							</tr>
 						</tbody>
 					</table>
