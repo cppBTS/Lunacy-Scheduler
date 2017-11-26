@@ -15,8 +15,8 @@ cs480App.controller('eventDescription', function ($scope, $firebaseArray,$fireba
   var sURLVariables = sPageURL.split('&');
 
   var id = GetURLParameter('id');
-  // var eventID = id.replace(/['"]+/g, '');
-  console.log("First: " + eventID);
+	var eventID = id.replace(/['"]+/g, '');
+	console.log("First: " + eventID);
 
   function GetURLParameter(sParam){
     for (var i = 0; i < sURLVariables.length; i++){
@@ -40,44 +40,43 @@ cs480App.controller('eventDescription', function ($scope, $firebaseArray,$fireba
           $scope.users = event.users;
       });
 
-			//Table Filter function
-			(function(){
-			  'use strict';
-			  var $ = jQuery;
-			  $.fn.extend({
-			    filterTable: function(){
-			      return this.each(function(){
-			        $(this).on('keyup', function(e){
-			          var $this = $(this), search = $this.val().toLowerCase(), target = $this.attr('data-filters'), $rows = $(target).find('tbody tr');
-			          if(search == '') {
-			            $rows.show();
-			          } else {
-			            $rows.each(function(){
-			              var $this = $(this);
-			              $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
-			            })
-			          }
-			        });
-			      });
-			    }
-			  });
-			  $('[data-action="filter"]').filterTable();
-			})(jQuery);
+	//Table Filter function
+	(function(){
+		'use strict';
+		var $ = jQuery;
+		$.fn.extend({
+			filterTable: function(){
+				return this.each(function(){
+					$(this).on('keyup', function(e){
+						var $this = $(this), search = $this.val().toLowerCase(), target = $this.attr('data-filters'), $rows = $(target).find('tbody tr');
+						if(search == '') {
+							$rows.show();
+						} else {
+							$rows.each(function(){
+								var $this = $(this);
+								$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+							})
+						}
+					});
+				});
+			}
+		});
+		$('[data-action="filter"]').filterTable();
+	})(jQuery);
 
-			$(function(){
-			    // attach table filter plugin to inputs
-			  $('[data-action="filter"]').filterTable();
+	$(function(){
+		// attach table filter plugin to inputs
+		$('[data-action="filter"]').filterTable();
+		$('.container').on('click', '.panel-heading span.filter', function(e){
+			var $this = $(this),
+			$panel = $this.parents('.panel');
+			$panel.find('.panel-body').slideToggle();
 
-			  $('.container').on('click', '.panel-heading span.filter', function(e){
-			    var $this = $(this),
-			        $panel = $this.parents('.panel');
+			if($this.css('display') != 'none') {
+				$panel.find('.panel-body input').focus();
+			}
+		});
 
-			    $panel.find('.panel-body').slideToggle();
-			    if($this.css('display') != 'none') {
-			      $panel.find('.panel-body input').focus();
-			    }
-			  });
-			  $('[data-toggle="tooltip"]').tooltip();
-			})
-
+		$('[data-toggle="tooltip"]').tooltip();
+	})
 });
