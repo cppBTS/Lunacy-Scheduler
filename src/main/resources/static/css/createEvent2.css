@@ -1,7 +1,17 @@
+.header{
+  margin-bottom: 25px;
+}
+#backButton{
+  margin-left: -2%;
+  margin-top: 1%;
+  float: left;
+}
+
 #title{
-  text-align: center;
-  font-size: 24px;
+  font-size: 31px;
   font-weight: bold;
+  margin-left: 30%;
+  float: left;
 }
 
 .subContainer{
