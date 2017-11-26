@@ -33,11 +33,13 @@ cs480App.controller('eventDescription', function ($scope, $firebaseArray,$fireba
 
   event.$loaded()
       .then(function(){
-          $scope.description = event.description;
-          $scope.start = event.start;
-          $scope.end = event.end;
-          $scope.title = event.title;
-          $scope.users = event.users;
+
+				$scope.description = event.description;
+				$scope.start = moment(event.start).format('MMMM Do YYYY, h:mm:ss a').toString();
+				$scope.end = moment(event.end).format('MMMM Do YYYY, h:mm:ss a').toString();
+				$scope.title = event.title;
+				$scope.users = event.users;
+
       });
 
 	//Table Filter function
