@@ -12,19 +12,19 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 calendarApp.controller('displayCalendar', function ($scope, $firebaseObject,$firebaseArray) {
-	
+
 	var reference = database.ref("Calendar");
-	$scope.groups = new $firebaseArray(reference);
-	$scope.groups.$loaded().then(function() {
-		$('#calendar').fullCalendar('renderEvents', $scope.groups, true);
+	$scope.events = new $firebaseArray(reference);
+	$scope.events.$loaded().then(function() {
+		$('#calendar').fullCalendar('renderEvents', $scope.events, true);
 	});
 });
 
-//Initialized Calendar 
+//Initialized Calendar
 function loadCalendar(){
-	
+
 	$(document).ready(function() {
-		
+
 		flag = true;
 
 		$('#calendar').fullCalendar({
@@ -41,32 +41,32 @@ function loadCalendar(){
 		        switchView: {
 		            text: 'View: Agenda',
 		            click: function() {
-		            	
+
 		            	var view = $('#calendar').fullCalendar('getView');
-		            	
+
 		            	if(view.name == "month"){
 		            		$('#calendar').fullCalendar('changeView', 'listMonth');
 		            	}
-		            	
+
 		            	else if(view.name == "agendaWeek"){
 		            		$('#calendar').fullCalendar('changeView', 'listWeek');
 		            	}
-		            	
+
 		            	else if(view.name == "agendaDay"){
 		            		$('#calendar').fullCalendar('changeView', 'listDay');
 		            	}
 		            	else if(view.name == "listMonth"){
 		            		$('#calendar').fullCalendar('changeView', 'month');
 		            	}
-		            	
+
 		            	else if(view.name == "listWeek"){
 		            		$('#calendar').fullCalendar('changeView', 'agendaWeek');
 		            	}
-		            	
+
 		            	else if(view.name == "listDay"){
 		            		$('#calendar').fullCalendar('changeView', 'agendaDay');
 		            	}
-		            	
+
 		            	changeViews();
 		            }
 		        }
@@ -79,38 +79,35 @@ function loadCalendar(){
 		    	listDay: "Day"
 		    },
 		});
-		
+
 		changeViews();
 	});
-	
+
 	function changeViews(){
-	
+
 		if(flag){
-		
+
 		$(".fc-listMonth-button").hide();
 		$(".fc-listWeek-button").hide();
 		$(".fc-listDay-button").hide();
 		$(".fc-month-button").show();
 		$(".fc-agendaWeek-button").show();
 		$(".fc-agendaDay-button").show();
-		
+
 		$(".fc-switchView-button").text('View: Agenda');
-		
+
 		}else{
-		
+
 		$(".fc-listMonth-button").show();
 		$(".fc-listWeek-button").show();
 		$(".fc-listDay-button").show();
 		$(".fc-month-button").hide();
 		$(".fc-agendaWeek-button").hide();
 		$(".fc-agendaDay-button").hide();
-		
+
 		$(".fc-switchView-button").text('View: List');
 		}
-		
+
 		flag = !flag;
 		}
 }
-
-
-

@@ -14,8 +14,8 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
       <!--  Firebase dependencies -->
-		  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-		  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+      <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
       <!-- local files -->
       <script src="/js/bootstrap.min.js"></script>
@@ -57,8 +57,12 @@
         <!--/.container-fluid -->
      </nav>
 
-     <!-- Title -->
-     <div id='title'>Create Event</div>
+     <div class="header container">
+       <!-- Back Button -->
+       <div id="backButton"> <input type="image" width="38" height="38" src="/images/backButton.png" onclick="window.history.back()" /></div>
+        <!-- Title -->
+       <div id='title'>Create Event</div>
+     </div>
 
      <!-- Title & Description -->
      <div class="container">
