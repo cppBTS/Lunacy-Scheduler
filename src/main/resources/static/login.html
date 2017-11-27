@@ -14,15 +14,17 @@
 
 
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-   		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-auth.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-database.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
 
 
-		<!-- local files -->
+    <!-- local files -->
         <script src="js/Sign.js"></script>
 		
 
@@ -33,8 +35,8 @@
     <link href="css/signin.css" rel="stylesheet">
   </head>
 
-  <body>
-    <div class="container" ng-controller="SignIn">
+  <body ng-controller="SignIn">
+    <div class="container" >
 
       <form class="form-signin" name="form">
         <h2 class="form-signin-heading">Please sign in</h2>

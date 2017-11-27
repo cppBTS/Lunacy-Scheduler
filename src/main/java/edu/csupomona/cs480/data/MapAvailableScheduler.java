@@ -23,7 +23,6 @@ public class MapAvailableScheduler {
 
 	public DatewithTime bestAvailableTime() {
 		List<DatewithTime> availableTimes = findAvailableTimes();
-		System.out.println("size in best: "+ availableTimes.size());
 		DatewithTime best = availableTimes.get(0);
 		for(int i = 0; i < availableTimes.size(); i++) {
 			System.out.println("Counter: "+i);
@@ -42,19 +41,20 @@ public class MapAvailableScheduler {
 		
 		int totalDays = getDaysBetween();
 		for(int e = 0; e < schedules.size(); e++) {
-			try {
 				availableTimes.add(schedules.get(e).returnAvailables(start, end, totalDays));
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 		}
 		
 		LocalDate current = new LocalDate(start);
 		for(int i = 0; i < totalDays + 1; i++) {
 			Map<String, TimeFrame> first = availableTimes.get(0).get(current);
+			if(first == null) {
+				continue;
+			}
 			for(int e = 0; e < schedules.size() - 1; e++) {
 				 Map<String, TimeFrame> second = availableTimes.get(e+1).get(current);
+				 if(second == null) {
+				 	continue;
+				 }
 				 first = getAvailableTimes(first, second);	 
 			}
 			for (Map.Entry<String, TimeFrame> entry : first.entrySet()) {
@@ -62,7 +62,6 @@ public class MapAvailableScheduler {
 			}
 			current = current.plusDays(1);
 		}
-		System.out.println("IM IN HERE" + " size is: " + available.size());
 		return available;
 	}
 	public Map<String, TimeFrame> getAvailableTimes(Map<String, TimeFrame> a, Map<String, TimeFrame> b) {
