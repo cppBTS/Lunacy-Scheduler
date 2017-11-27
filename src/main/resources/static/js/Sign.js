@@ -17,20 +17,25 @@ firebase.auth().onAuthStateChanged(function(user) {
 	  }
 	});
 
-signUpMod.controller('SignIn', function ($scope) {
+signUpMod.controller('SignIn', function ($scope, $window) {
 	$scope.signin = function() {
-		firebase.auth().signInWithEmailAndPassword($scope.signin.email, $scope.signin.password).catch(function(error) {
-			  // Handle Errors here.
-			  var errorCode = error.code;
-			  var errorMessage = error.message;
-			  if (errorCode === 'auth/wrong-password') {
-		            alert('Wrong password.');
-		          } else {
-		            alert(errorMessage);
-		          }
-			  // ...
-			});
-		alert("Successfully logged in");
+		firebase.auth().signInWithEmailAndPassword($scope.signin.email, $scope.signin.password)
+			.then(function(user) {
+					console.log(user);
+					window.location = "/check.html";
+					})
+				.catch(function(error) {
+				  // Handle Errors here.
+				  var errorCode = error.code;
+				  var errorMessage = error.message;
+				  if (errorCode === 'auth/wrong-password') {
+			            alert('Wrong password.');
+			          } else {
+			            alert(errorMessage);
+			          }
+				  // ...
+				});
+		//alert("Successfully logged in");
 	}
 });
 
@@ -39,7 +44,12 @@ signUpMod.controller('SignUpUser', function ($scope) {
 	$scope.signup = function() {
 		if($scope.first.password == $scope.confirm.password) {
 			if($scope.first.password.length >= 6) {
-			firebase.auth().createUserWithEmailAndPassword($scope.signup.email, $scope.confirm.password).catch(function(error) {
+				firebase.auth().createUserWithEmailAndPassword($scope.signup.email, $scope.confirm.password)
+				.then(function(user) {
+					console.log(user);
+					window.location = "/login.html";
+				})
+			.catch(function(error) {
 				  // Handle Errors here.
 				  var errorCode = error.code;
 				  var errorMessage = error.message;
