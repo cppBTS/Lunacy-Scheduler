@@ -106,7 +106,7 @@ public class WebController {
 				public void onDataChange(DataSnapshot dataSnapshot) {
 					MapAvailable sche = dataSnapshot.getValue(MapAvailable.class);
 					availables.add(sche);
-					System.out.println("Success");
+					System.out.println("Success: " + sche);
 					counter[0]++;
 				}
 
