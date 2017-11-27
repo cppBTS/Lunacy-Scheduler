@@ -117,7 +117,7 @@ public class WebController {
 			});
 		}
 		while(counter[0] != users.length) {
-
+			System.out.println("TEST: "+ counter[0]);
 		}
 //		Thread.sleep(20000);
 		scheduler.setSchedules(availables);
