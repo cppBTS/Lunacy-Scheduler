@@ -144,12 +144,12 @@ public class Schedule2 {
 		return false;
 	}
 
-	public Map<String, TimeFrame> returnScheduleforDayofWeek(LocalDate date) throws IOException {
+	public Map<String, TimeFrame> returnScheduleforDayofWeek(LocalDate date) {
 		LocalDate dt = new LocalDate(date);
 		return returnTimeFrames(dt.getDayOfWeek());
 	}
 
-	public Map<String, TimeFrame> returnTimeFrames(int i) throws IOException {
+	public Map<String, TimeFrame> returnTimeFrames(int i){
 		if(i == 1) {
 			return monday;
 		} else if(i == 2) {
@@ -162,10 +162,8 @@ public class Schedule2 {
 			return friday;
 		}else if(i == 6) {
 			return saturday;
-		}else if(i == 7) {
+		}else{
 			return sunday;
-		}else {
-			throw new IOException("Not correct input");
 		}
 	}
 }

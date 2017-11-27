@@ -15,8 +15,8 @@ cs480App.controller('eventDescription', function ($scope, $firebaseArray,$fireba
   var sURLVariables = sPageURL.split('&');
 
   var id = GetURLParameter('id');
-	var eventID = id.replace(/['"]+/g, '');
-	console.log("First: " + eventID);
+  var eventID = id.replace(/['"]+/g, '');
+  console.log("First: " + eventID);
 
   function GetURLParameter(sParam){
     for (var i = 0; i < sURLVariables.length; i++){

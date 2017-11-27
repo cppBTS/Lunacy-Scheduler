@@ -85,11 +85,7 @@ public class WebController {
 	}
 
 
-	@RequestMapping(value = "/test1", method = RequestMethod.GET)
-	public void adds(@RequestBody Long test) {
-		System.out.println(test);
-	}
-	private int counter = 0;
+	
 	@RequestMapping(value = "/set", method = RequestMethod.POST)
 	public @ResponseBody ConvertDateTime addNewData(@RequestBody ExtractData obj) {
 

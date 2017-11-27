@@ -1,5 +1,4 @@
 var cs480App = angular.module('LunacyScheduler', ['ui.bootstrap', 'firebase']);
-var signUpMod = angular.module('SignUp', []);
 
 var config = {
 	    apiKey: "AIzaSyC28G2x-Xnel2wtmKnw3xi-a8TmWrnJ7tI",
@@ -11,71 +10,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
-signUpMod.controller('SignIn', function ($scope) {
-	$scope.signin = function() {
-		firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-			  // Handle Errors here.
-			  var errorCode = error.code;
-			  var errorMessage = error.message;
-			  alert(errorMessage);
-			  // ...
-			});
-		alert("Successfully logged in");
-	}
-});
-
-	cs480App.controller('ReadDataCtrl', function ($scope, $firebaseObject,$firebaseArray, $http) {	
-//			$scope.clear = function() {
-//				var schedules = [];
-//				var userRef = database.ref('user/justin/schedule');
-//				var obj = $firebaseArray(userRef);
-//
-//			     // to take an action after the data loads, use the $loaded() promise
-//			     obj.$loaded().then(function() {
-//
-//			       schedules.push(obj);
-//			     });
-			
-//	
-// 			userRef = database.ref('user/ubaldo/schedule');
-// 			var obj = new $firebaseObject(userRef);
-// 			obj.$loaded().then(function() {
-// 			        To iterate the key/value pairs of the object, use angular.forEach()
-// 			      schedules.push(obj);
-// 					$http.post("test",obj)
-// 				  	.success(function(data){
-// 				  		alert(data);
-// 				  	});
-// 			     });
-
-		  $scope.clear = function() {
-					$http.get("/set");
-		  };
-//			$scope.clear = function() {
-//				$http.post("/test",$scope.schedule)
-//			  	.success(function(data){
-//			  		alert(data);
-//			  	});
-//			};
-	});
-
-
-signUpMod.controller('SignUpUser', function ($scope) {
-	$scope.signup = function() {
-		if($scope.first.password != $scope.confirm.password) {
-			firebase.auth().createUserWithEmailAndPassword($scope.signup.email, $scope.confirm.password).catch(function(error) {
-				  // Handle Errors here.
-				  var errorCode = error.code;
-				  var errorMessage = error.message;
-				  alert(errorMessage);
-				  // ...
-				});
-			alert("Account successfully created");
-		} else {
-			alert("Passwords do not match!");
-		}
-	}
-});
 
 cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebaseArray, $http, $window) {
 
@@ -357,7 +291,7 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 					alert( "Something gone wrong" );
 				}
 				$scope.tuesAvails.splice( counter, 1 );
-			}
+			};
 
 			$scope.wedSubmit = function() {
 				$scope.wedAvails.push({ 'start':$scope.wedStart.date, 'end': $scope.wedEnd.date});
@@ -378,7 +312,7 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 					alert( "Something gone wrong" );
 				}
 				$scope.wedAvails.splice( counter, 1 );
-			}
+			};
 
 			$scope.thursSubmit = function() {
 				$scope.thursAvails.push({ 'start':$scope.thursStart.date, 'end': $scope.thursEnd.date});
@@ -399,7 +333,7 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 					alert( "Something gone wrong" );
 				}
 				$scope.thursAvails.splice( counter, 1 );
-			}
+			};
 
 			$scope.friSubmit = function() {
 				$scope.friAvails.push({ 'start':$scope.friStart.date, 'end': $scope.friEnd.date});
@@ -420,7 +354,7 @@ cs480App.controller('DatepickerPopupDemoCtrl', function ($scope, $log, $firebase
 					alert( "Something gone wrong" );
 				}
 				$scope.friAvails.splice( counter, 1 );
-			}
+			};
 
 			$scope.satSubmit = function() {
 				$scope.satAvails.push({ 'start':$scope.satStart.date, 'end': $scope.satEnd.date});

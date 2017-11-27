@@ -18,6 +18,7 @@
 		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase-database.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
 
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
 
 		<!-- local files -->
@@ -31,7 +32,7 @@
     <link href="css/signin.css" rel="stylesheet">
   </head>
 
-  <body ng-controller="SignUpUser">
+  <body ng-controller='SignUp'>
 
     <div class="container">
       <form class="form-signin" name="form">
@@ -47,7 +48,7 @@
             <input type="checkbox" value="remember-me"> Remember Me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="form.$invalid" ng-click="signup()">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="form.$invalid" ng-click="signup()">Sign Up</button>
       </form>
 
     </div> <!-- /container -->

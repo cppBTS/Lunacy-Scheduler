@@ -13,7 +13,7 @@ public class MapAvailable {
 
 
 	public MapAvailable() {}
-	public Map<LocalDate,Map<String, TimeFrame>> returnAvailables(long start, long end, int days) throws IOException, Exception {
+	public Map<LocalDate,Map<String, TimeFrame>> returnAvailables(long start, long end, int days){
 		Map<LocalDate,Map<String, TimeFrame>> availables = new HashMap<>();
 		LocalDate current = new LocalDate(start);
 		for(int i = 0; i < days + 1; i++) {
@@ -22,16 +22,21 @@ public class MapAvailable {
 		}
 		return availables;
 	}
-	private Map<String, TimeFrame> findAvailforDate(LocalDate date) throws IOException, Exception {
-		return findCorrectSchedule(date).returnScheduleforDayofWeek(date);
+	private Map<String, TimeFrame> findAvailforDate(LocalDate date) {
+		Schedule2 check = findCorrectSchedule(date);
+		if(check == null) {
+			return null;
+		} else {
+			return check.returnScheduleforDayofWeek(date);
+		}
 	}
-	private Schedule2 findCorrectSchedule(LocalDate date) throws Exception {
+	private Schedule2 findCorrectSchedule(LocalDate date) {
 		for (Map.Entry<String, Schedule2> entry : availableTimes.entrySet()) {
 			if(entry.getValue().contains(date)) {
 				return entry.getValue();
 			}
 		}
-		throw new Exception("Schedule does not exist!");
+		return null;
 	}
 
 	public Map<String, Schedule2> getAvailableTimes() {
