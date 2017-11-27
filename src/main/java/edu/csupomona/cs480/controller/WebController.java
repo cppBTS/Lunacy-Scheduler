@@ -87,7 +87,7 @@ public class WebController {
 
 	
 	@RequestMapping(value = "/set", method = RequestMethod.POST)
-	public @ResponseBody ConvertDateTime addNewData(@RequestBody ExtractData obj) {
+	public @ResponseBody ConvertDateTime addNewData(@RequestBody ExtractData obj) throws InterruptedException {
 
 		MapAvailableScheduler scheduler = new MapAvailableScheduler();
 		scheduler.setStart(obj.getStart());
@@ -96,8 +96,8 @@ public class WebController {
 
 		List<MapAvailable> availables = new ArrayList<>();
 		String[] users = obj.getUsers();
-		int[] counter = new int[1];
-		counter[0] = 0;
+//		int[] counter = new int[1];
+//		counter[0] = 0;
 		for(int i = 0; i < users.length; i++) {
 			DatabaseReference ref = firebaseDatabase.getReference("user/" + users[i] + "/available/");
 
@@ -107,7 +107,7 @@ public class WebController {
 					MapAvailable sche = dataSnapshot.getValue(MapAvailable.class);
 					availables.add(sche);
 					System.out.println("Success");
-					counter[0]++;
+//					counter[0]++;
 				}
 
 				@Override
@@ -116,10 +116,10 @@ public class WebController {
 				}
 			});
 		}
-		while(counter[0] != users.length - 1) {
-
-		}
-
+//		while(counter[0] != users.length - 1) {
+//
+//		}
+		Thread.sleep(8000);
 		scheduler.setSchedules(availables);
 		System.out.println("Size : "+ scheduler.getSchedules().size());
 		ConvertDateTime time = new ConvertDateTime(scheduler.bestAvailableTime());
